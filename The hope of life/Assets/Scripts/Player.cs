@@ -2,44 +2,33 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    
-    
-    public float speed = 5f;
-    public int vidaMax = 100;
-    public int vidaAtual;
-    
-    private Rigidbody2D rb;
-    #region moviment
+   public float speed =  5f;
+   public int vidaMax = 100;
+
+   public int vidaAtual;
+
     void Start()
     {
         vidaAtual = vidaMax;
-        rb = GetComponent<Rigidbody2D>();
     }
+   void Update()
+   {
+       float moveHorizontal = Input.GetAxis("Horizontal");
+       float moveVertical = Input.GetAxis("Vertical");
 
-    void Update()
-    {
-        float moveX = Input.GetAxis("Horizontal");
-        float moveY = Input.GetAxis("Vertical");
-        Vector2 movement = new Vector2(moveX, moveY) * speed;
-        rb.linearVelocity = movement;
-    }
-    #endregion
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Inimigo"))
-        {
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+       Vector3 movement = new Vector3(moveHorizontal, moveVertical, 0.0f);
+       transform.Translate(movement * speed * Time.deltaTime);
+   }
+   
 
-            if (enemy != null)
-            {
-                vidaAtual -= enemy.dano;
-            }
+   public void sistemaDeVida(int dano)
+   {
+       vidaAtual -= dano;
+       if (vidaAtual <= 0)
+       {
+           Morrer();
+       }
+   }
 
-            if (vidaAtual <= 0)
-            {
-                vidaAtual = 0;
-                gameObject.SetActive(false);
-            }
-        }
-    }
+   public void Morrer(){ Destroy(gameObject); }
 }
