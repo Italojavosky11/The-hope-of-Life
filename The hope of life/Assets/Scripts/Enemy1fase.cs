@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Enemy1fase : MonoBehaviour
 {
-    public int dano = 10;
+    public int dano = 10;  
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
