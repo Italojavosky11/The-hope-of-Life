@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class Enemy1fase : MonoBehaviour
+public class Boss : MonoBehaviour
 {
-    public int dano = 10;  
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,17 +16,7 @@ public class Enemy1fase : MonoBehaviour
 
     public void TomarDano(int danoRecebido)
     {
-        dano -= danoRecebido;
-        if (dano <= 0)
-        {
-            Morrer();
-        }
+        // Lógica para o Boss tomar dano
+        // Você pode adicionar uma variável de vida e diminuir com base no dano recebido
     }
-
-    public void Morrer()
-    {
-        Destroy(gameObject);
-    }
-
-     
 }
