@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+   public GameObject balaPrefab;
+   public Transform FirePoint;
    public float speed =  5f;
    public int vidaMax = 100;
 
@@ -13,6 +15,11 @@ public class Player : MonoBehaviour
     }
    void Update()
    {
+
+         if (Input.GetKeyDown(KeyCode.Z))
+         {
+              Atirar();
+         }
        float moveHorizontal = Input.GetAxis("Horizontal");
        float moveVertical = Input.GetAxis("Vertical");
 
@@ -31,4 +38,10 @@ public class Player : MonoBehaviour
    }
 
    public void Morrer(){ Destroy(gameObject); }
+
+
+   void Atirar()
+    {
+        Instantiate(balaPrefab, FirePoint.position, FirePoint.rotation);
+    }
 }
