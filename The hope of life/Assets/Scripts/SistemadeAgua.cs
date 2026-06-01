@@ -17,7 +17,7 @@ public class SistemadeAgua : MonoBehaviour
     {
         aguaAtual = agua;
 
-        // garante referência automática se estiver no mesmo objeto
+        
         if (player == null)
         {
             player = GetComponent<Player>();
@@ -38,11 +38,11 @@ public class SistemadeAgua : MonoBehaviour
             }
             else
             {
-                player.sistemaDeVida(10); // dano só acontece no intervalo
+                player.sistemaDeVida(10); 
             }
         }
 
-        // trava para não ficar negativo
+        
         if (aguaAtual < 0)
         {
             aguaAtual = 0;
@@ -53,7 +53,7 @@ public class SistemadeAgua : MonoBehaviour
     #region coletaragua
     public void coletaragua()
     {
-        aguaAtual += 4; // cada gota = 4 (corrigido)
+        aguaAtual += 4; // cada gota = 4 
 
         if (aguaAtual > agua)
         {
