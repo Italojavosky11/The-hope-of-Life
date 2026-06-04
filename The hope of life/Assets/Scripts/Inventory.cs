@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    public Item[] item;
+
     public  GameObject mouseItem;
 
     public void DragItem ( GameObject Button)
