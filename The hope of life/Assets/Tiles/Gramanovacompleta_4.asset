@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Tile de terreno_0
+  m_Name: Gramanovacompleta_4
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 5161871752161469988, guid: 59c6fb1ac6c360b44bc97ef89362f31e, type: 3}
+  m_Sprite: {fileID: -413356428, guid: f0dbc9cafbd22f344af9304ae3aebbde, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
