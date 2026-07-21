@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 23aea5d985e7ea44aa011868a549a262
+guid: 7d14a65aa7c5b8a4984c277edabb9f63
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7611919021688551150
-    second: heart pixel art 254x254_0
+      213: 4045728447037824198
+    second: "Cora\xE7\xE3o sprites-20260721-105118_000_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: heart pixel art 254x254_0
+      name: "Cora\xE7\xE3o sprites-20260721-105118_000_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 254
-        height: 254
+        x: 8
+        y: 8
+        width: 15
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ee6f8c24508f2a960800000000000000
-      internalID: 7611919021688551150
+      spriteID: 6ccd16f5690552830800000000000000
+      internalID: 4045728447037824198
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      heart pixel art 254x254_0: 7611919021688551150
+      "Cora\xE7\xE3o sprites-20260721-105118_000_0": 4045728447037824198
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
