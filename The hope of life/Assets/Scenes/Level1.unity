@@ -50140,6 +50140,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Tweblede
   speed: 3
   distance: 5
+--- !u!114 &1930914736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930914731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 594f8f41720a182428c5ed74e044438d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BushDamage
+  dano: 0.5
 --- !u!1 &2060471789
 GameObject:
   m_ObjectHideFlags: 0
@@ -50285,7 +50298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8232714526509836006, guid: 49e147a402440b442b9bc4fd6e41c302, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -50294,6 +50307,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 657099817617318838, guid: 49e147a402440b442b9bc4fd6e41c302, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1930914735}
+    - targetCorrespondingSourceObject: {fileID: 657099817617318838, guid: 49e147a402440b442b9bc4fd6e41c302, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1930914736}
   m_SourcePrefab: {fileID: 100100000, guid: 49e147a402440b442b9bc4fd6e41c302, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

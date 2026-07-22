@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HeartSystem : MonoBehaviour
 {
@@ -11,9 +12,20 @@ public class HeartSystem : MonoBehaviour
     public Sprite meio;
     public Sprite vazio;
 
-    void Update()
+    void Start()
     {
         LogicaCoracao();
+    }
+
+    public void TomarDano(float dano)
+    {
+        vida -= dano;
+
+        if (vida < 0)
+            vida = 0;
+
+        LogicaCoracao();
+        DeadStage();
     }
 
     void LogicaCoracao()
@@ -40,5 +52,20 @@ public class HeartSystem : MonoBehaviour
 
             coracao[i].enabled = (i < vidaMaxima);
         }
+    }
+
+    void DeadStage()
+    {
+        if (vida <= 0)
+        {
+            GetComponent<Player>().enabled = false;
+
+            Invoke(nameof(ReiniciarFase), 2f);
+        }
+    }
+
+    void ReiniciarFase()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
