@@ -9,10 +9,25 @@ public class BushDamage : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             HeartSystem heart = other.GetComponent<HeartSystem>();
+            Player player = other.GetComponent<Player>();
 
             if (heart != null)
             {
                 heart.TomarDano(dano);
+            }
+
+            if (player != null)
+            {
+                player.kBCount = player.kBTime;
+
+                if (other.transform.position.x <= transform.position.x)
+                {
+                    player.isKnockRight = true;
+                }
+                else
+                {
+                    player.isKnockRight = false;
+                }
             }
         }
     }
