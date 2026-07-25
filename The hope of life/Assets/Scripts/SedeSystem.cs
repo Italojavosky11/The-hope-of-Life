@@ -5,7 +5,7 @@ public class SedeSystem : MonoBehaviour
 {
     
     public float sede;
-    public float sedeMaxima = 5f;
+    public float sedeMaxima = 4f;
 
     
     public Image garrafa;
@@ -16,7 +16,7 @@ public class SedeSystem : MonoBehaviour
     public Sprite vazia;
 
     
-    public float tempoParaPerderSede = 40f;
+    public float tempoParaPerderSede = 50f;
     private float contador;
 
     
@@ -65,19 +65,19 @@ public class SedeSystem : MonoBehaviour
     {
         sede = Mathf.Clamp(sede, 0, sedeMaxima);
 
-        if (sede >= 5)
+        if (sede == 4)
         {
             garrafa.sprite = cheia;
         }
-        else if (sede >= 4)
+        else if (sede == 3)
         {
             garrafa.sprite = tresQuartos;
         }
-        else if (sede >= 3)
+        else if (sede == 2)
         {
             garrafa.sprite = metade;
         }
-        else if (sede >= 1)
+        else if (sede == 1)
         {
             garrafa.sprite = umQuarto;
         }
