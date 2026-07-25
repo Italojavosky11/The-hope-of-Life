@@ -12,6 +12,8 @@ public class HeartSystem : MonoBehaviour
     public Sprite meio;
     public Sprite vazio;
 
+    public Player player;
+
     void Start()
     {
         LogicaCoracao();
@@ -58,7 +60,7 @@ public class HeartSystem : MonoBehaviour
     {
         if (vida <= 0)
         {
-            GetComponent<Player>().enabled = false;
+            player.enabled = false;
 
             Invoke(nameof(ReiniciarFase), 2f);
         }
