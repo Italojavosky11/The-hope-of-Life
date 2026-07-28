@@ -6,8 +6,26 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/TelaInicial.unity
+    guid: 1ed599085fb29e543866091ef2ac8438
+  - enabled: 1
+    path: Assets/Scenes/MenuFases.unity
+    guid: ba4df3404b3a1224689e46005b692714
+  - enabled: 1
+    path: Assets/Scenes/Pause.unity
+    guid: 72bdba7383a02bc42a765c9175bd1f33
+  - enabled: 1
+    path: Assets/Scenes/Inventario.unity
+    guid: 99207002226a8d44db70311d9d2da72d
+  - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: b8169431c9905b943837ff4c5a3a0bd8
+  - enabled: 1
+    path: Assets/Scenes/Level3.unity
+    guid: 3e8c73979d280874eb1a4252e287ca92
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
