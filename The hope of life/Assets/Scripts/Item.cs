@@ -1,9 +1,11 @@
 using UnityEngine;
-[System.Serializable]
-public class Item 
-{
-        public string iItemnome;
-        public int iItemdano;
-        public Sprite iItemSprite;
 
+public class Item : MonoBehaviour
+{
+    public Slot slotAtual;
+
+    public void Clicar()
+    {
+        MouseItem.instancia.PegarItem(this);
+    }
 }

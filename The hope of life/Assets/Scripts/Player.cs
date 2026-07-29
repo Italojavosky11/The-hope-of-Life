@@ -13,27 +13,44 @@ public class Player : MonoBehaviour
 
     public bool isKnockRight;
 
+    public bool podeMover = true;
+
     
     Vector2 movement;
 
     void Update()
     {
         
+        if (!podeMover)
+        {
+            movement = Vector2.zero;
+            return;
+        }
+
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
         Flip();
+
         
     }
 
     void FixedUpdate()
     {
+      
+        if (!podeMover)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
         if (kBCount <= 0)
         {
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
         }
 
         KnockLogic();
+
     }
 
     void KnockLogic()

@@ -2,29 +2,24 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public Item[] item;
-
-    public  GameObject mouseItem;
-
-    public void DragItem ( GameObject Button)
+    public GameObject inventoryPanel;
+    private bool aberto = false;
+    public Player player;
+    void Start()
     {
-        mouseItem = Button;
-        mouseItem.transform.position = Input.mousePosition;
+        inventoryPanel.SetActive(false);
     }
 
-
-    public void Dropitem ( GameObject Button)
+    // Update is called once per frame
+    void Update()
     {
-        if (mouseItem != null)
+        if (Input.GetKeyDown(KeyCode.E))
         {
+            aberto = !aberto;
 
-            Transform aux = mouseItem.transform.parent;
-            mouseItem.transform.SetParent(Button.transform.parent);
-            Button.transform.SetParent(aux);
+            inventoryPanel.SetActive(aberto);
 
-            
+            player.podeMover = !aberto;
         }
-        
     }
-
 }
