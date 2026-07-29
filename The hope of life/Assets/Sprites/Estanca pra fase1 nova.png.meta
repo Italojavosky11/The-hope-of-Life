@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: acf6f05b447f32c458a56f79be3a9347
+guid: e7424b44842ff21468f6fdf0f9013f1a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2646741879360910525
-    second: Estanca pra fase1_0
+      213: 665131627710233451
+    second: Estanca pra fase1 nova_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Estanca pra fase1_0
+      name: Estanca pra fase1 nova_0
       rect:
         serializedVersion: 2
         x: 11
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 34b0b84a842e44bd0800000000000000
-      internalID: -2646741879360910525
+      spriteID: b6bbb8ef0b50b3900800000000000000
+      internalID: 665131627710233451
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Estanca pra fase1_0: -2646741879360910525
+      Estanca pra fase1 nova_0: 665131627710233451
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
