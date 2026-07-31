@@ -1,11 +1,9 @@
 using UnityEngine;
-
-public class Item : MonoBehaviour
+[System.Serializable]
+public class Item 
 {
-    public Slot slotAtual;
-
-    public void Clicar()
-    {
-        MouseItem.instancia.PegarItem(this);
-    }
+    public string itemName;
+    public int iAtaque;
+    public float iVelocidade; 
+    public Sprite iSprite;
 }
