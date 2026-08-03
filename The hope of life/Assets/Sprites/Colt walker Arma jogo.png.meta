@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 99e5cb0d03df45348874848de4959697
+guid: 1bf9dc9326f577a42ab4e14a4f432661
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2869062965918279606
-    second: mini uzi_0
+      213: 6724579447233543437
+    second: Colt walker Arma jogo_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mini uzi_0
+      name: Colt walker Arma jogo_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 348
-        height: 348
+        width: 16
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6b7a9c90195f0d720800000000000000
-      internalID: 2869062965918279606
+      spriteID: d0d7f300161825d50800000000000000
+      internalID: 6724579447233543437
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mini uzi_0: 2869062965918279606
+      Colt walker Arma jogo_0: 6724579447233543437
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

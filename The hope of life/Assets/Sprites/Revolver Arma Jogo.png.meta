@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8bb9d1de26d434c4793fbf4d98daaff3
+guid: 17e03e9ac76605b46b09edc3bee14404
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6500281059644141715
-    second: doze_0
+      213: 1146325697877711480
+    second: Revolver Arma Jogo_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: doze_0
+      name: Revolver Arma Jogo_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 348
-        height: 348
+        y: 1
+        width: 15
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d6f06b3f0dc5ac5a0800000000000000
-      internalID: -6500281059644141715
+      spriteID: 87a17e2162198ef00800000000000000
+      internalID: 1146325697877711480
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      doze_0: -6500281059644141715
+      Revolver Arma Jogo_0: 1146325697877711480
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
