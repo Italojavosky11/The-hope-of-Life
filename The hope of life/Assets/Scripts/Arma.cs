@@ -10,7 +10,6 @@ public class Arma : MonoBehaviour
 
     void Update()
     {
-        
         if (Input.GetKey(KeyCode.Space))
         {
             Atirar();
@@ -30,15 +29,14 @@ public class Arma : MonoBehaviour
         GameObject bala = Instantiate(
             dataArma.prefabBala,
             firePoint.position,
-            firePoint.rotation);
+            firePoint.rotation
+        );
 
         Bala balaScript = bala.GetComponent<Bala>();
 
         if (balaScript != null)
         {
-            balaScript.damage = dataArma.damage;
-            balaScript.speed = dataArma.bulletSpeed;
-            balaScript.lifeTime = dataArma.bulletLifeTime;
+            balaScript.Configurar(dataArma);
         }
     }
 }

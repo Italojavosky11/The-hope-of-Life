@@ -16,6 +16,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 1bf9dc9326f577a42ab4e14a4f432661, type: 3}
   prefabArma: {fileID: 0}
   prefabBala: {fileID: 0}
+  spriteBala: {fileID: 21300000, guid: 200c04bc5acac4840ade2ab5d2e387b1, type: 3}
   damage: 25
   bulletSpeed: 30
   fireRate: 0.4

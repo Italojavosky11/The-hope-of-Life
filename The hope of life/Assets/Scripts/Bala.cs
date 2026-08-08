@@ -6,6 +6,20 @@ public class Bala : MonoBehaviour
     public float damage;
     public float lifeTime;
 
+    public void Configurar(DataArma dataArma)
+    {
+        speed = dataArma.bulletSpeed;
+        damage = dataArma.damage;
+        lifeTime = dataArma.bulletLifeTime;
+
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.sprite = dataArma.spriteBala;
+        }
+    }
+
     void Start()
     {
         Destroy(gameObject, lifeTime);
@@ -18,7 +32,7 @@ public class Bala : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Depois você adicionará o dano no inimigo aqui.
+        // Depois adicionaremos o dano no inimigo aqui.
 
         Destroy(gameObject);
     }
