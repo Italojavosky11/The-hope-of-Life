@@ -1,11 +1,11 @@
 using UnityEngine;
 
-
-
 public class Player : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public Rigidbody2D rb;
+
+    public Animator animator;
 
     public float kBForce;
     public float kBCount;
@@ -15,29 +15,27 @@ public class Player : MonoBehaviour
 
     public bool podeMover = true;
 
-    
     Vector2 movement;
 
     void Update()
     {
-        
         if (!podeMover)
         {
             movement = Vector2.zero;
+            animator.SetFloat("Speed", 0f);
             return;
         }
 
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        Flip();
+        animator.SetFloat("Speed", movement.magnitude);
 
-        
+        Flip();
     }
 
     void FixedUpdate()
     {
-      
         if (!podeMover)
         {
             rb.linearVelocity = Vector2.zero;
@@ -50,7 +48,6 @@ public class Player : MonoBehaviour
         }
 
         KnockLogic();
-
     }
 
     void KnockLogic()
@@ -74,8 +71,15 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Flip() {
-        if(movement.x > 0) {transform.eulerAngles = new Vector2(0, 0);}
-        else if(movement.x < 0) {transform.eulerAngles = new Vector2(0, 180);}
+    void Flip()
+    {
+        if (movement.x > 0)
+        {
+            transform.eulerAngles = new Vector2(0, 0);
+        }
+        else if (movement.x < 0)
+        {
+            transform.eulerAngles = new Vector2(0, 180);
+        }
     }
 }
