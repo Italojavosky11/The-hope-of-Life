@@ -1,19 +1,34 @@
 fileFormatVersion: 2
-guid: 207ea240c7eae6943887dd06ab8e2d61
+guid: 31f9d2be53e05fd41ae5e67cb2030e55
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6245102981516428998
-    second: animation walk-Sheet_0
+      213: -6066351661872238428
+    second: animation walk para unity-Sheet_0
   - first:
-      213: -5556544043211578546
-    second: animation walk-Sheet_1
+      213: 4408648498420613391
+    second: animation walk para unity-Sheet_1
   - first:
-      213: 8621936461214696448
-    second: animation walk-Sheet_2
+      213: 8391827399733766125
+    second: animation walk para unity-Sheet_2
   - first:
-      213: 1256721145382706817
-    second: animation walk-Sheet_3
+      213: 503391463616663438
+    second: animation walk para unity-Sheet_3
+  - first:
+      213: 4790428230144417474
+    second: animation walk para unity-Sheet_4
+  - first:
+      213: -6794590499326487463
+    second: animation walk para unity-Sheet_5
+  - first:
+      213: -3139168188711899531
+    second: animation walk para unity-Sheet_6
+  - first:
+      213: 4703746060531697298
+    second: animation walk para unity-Sheet_7
+  - first:
+      213: 9063603610493222089
+    second: animation walk para unity-Sheet_8
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -187,89 +202,199 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: animation walk-Sheet_0
+      name: animation walk para unity-Sheet_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 29
+        width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a39faf02defe459a0800000000000000
-      internalID: -6245102981516428998
+      spriteID: 4a0318fed4dffcba0800000000000000
+      internalID: -6066351661872238428
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animation walk-Sheet_1
+      name: animation walk para unity-Sheet_1
       rect:
         serializedVersion: 2
-        x: 34
+        x: 32
         y: 0
-        width: 29
+        width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e43af8de1a033e2b0800000000000000
-      internalID: -5556544043211578546
+      spriteID: f018be7837aae2d30800000000000000
+      internalID: 4408648498420613391
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animation walk-Sheet_2
+      name: animation walk para unity-Sheet_2
       rect:
         serializedVersion: 2
-        x: 65
+        x: 64
         y: 0
-        width: 29
+        width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 004c0bec78547a770800000000000000
-      internalID: 8621936461214696448
+      spriteID: de76589ee82c57470800000000000000
+      internalID: 8391827399733766125
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animation walk-Sheet_3
+      name: animation walk para unity-Sheet_3
       rect:
         serializedVersion: 2
-        x: 98
+        x: 96
         y: 0
-        width: 29
+        width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 18e124c2935c07110800000000000000
-      internalID: 1256721145382706817
+      spriteID: e8fc5db7ed76cf600800000000000000
+      internalID: 503391463616663438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animation walk para unity-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ced2c338150b7240800000000000000
+      internalID: 4790428230144417474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animation walk para unity-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 954966da0f3c4b1a0800000000000000
+      internalID: -6794590499326487463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animation walk para unity-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57eee951a2f6f64d0800000000000000
+      internalID: -3139168188711899531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animation walk para unity-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29682abde10174140800000000000000
+      internalID: 4703746060531697298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: animation walk para unity-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cc7564767368cd70800000000000000
+      internalID: 9063603610493222089
       vertices: []
       indices: 
       edges: []
@@ -278,7 +403,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 92769b5d57869a64c85792f28f7236ef
     internalID: 0
     vertices: []
     indices: 
@@ -286,12 +411,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      animation walk-Sheet_0: -6245102981516428998
-      animation walk-Sheet_1: -5556544043211578546
-      animation walk-Sheet_2: 8621936461214696448
-      animation walk-Sheet_3: 1256721145382706817
+      animation walk para unity-Sheet_0: -6066351661872238428
+      animation walk para unity-Sheet_1: 4408648498420613391
+      animation walk para unity-Sheet_2: 8391827399733766125
+      animation walk para unity-Sheet_3: 503391463616663438
+      animation walk para unity-Sheet_4: 4790428230144417474
+      animation walk para unity-Sheet_5: -6794590499326487463
+      animation walk para unity-Sheet_6: -3139168188711899531
+      animation walk para unity-Sheet_7: 4703746060531697298
+      animation walk para unity-Sheet_8: 9063603610493222089
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
