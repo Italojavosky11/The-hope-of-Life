@@ -32,7 +32,12 @@ public class Bala : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Depois adicionaremos o dano no inimigo aqui.
+        BarrilDeAgua barril = other.GetComponentInParent<BarrilDeAgua>();
+
+        if (barril != null)
+        {
+            barril.DestruirBarril();
+        }
 
         Destroy(gameObject);
     }

@@ -17,12 +17,16 @@ public class Player : MonoBehaviour
 
     Vector2 movement;
 
+    int ultimaDirecao = 0;
+    string animacaoAtual = "";
+
     void Update()
     {
         if (!podeMover)
         {
             movement = Vector2.zero;
             animator.SetFloat("Speed", 0f);
+            TocarAnimacaoIdle();
             return;
         }
 
@@ -30,6 +34,8 @@ public class Player : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical");
 
         animator.SetFloat("Speed", movement.magnitude);
+
+        AtualizarAnimacao();
 
         Flip();
     }
@@ -48,6 +54,57 @@ public class Player : MonoBehaviour
         }
 
         KnockLogic();
+    }
+
+    void AtualizarAnimacao()
+    {
+        if (movement.magnitude > 0)
+        {
+            if (movement.x != 0)
+            {
+                ultimaDirecao = 0;
+                TocarAnimacao("Walk");
+            }
+            else if (movement.y > 0)
+            {
+                ultimaDirecao = 1;
+                TocarAnimacao("Walk costa");
+            }
+            else if (movement.y < 0)
+            {
+                ultimaDirecao = 2;
+                TocarAnimacao("Walk frente");
+            }
+        }
+        else
+        {
+            TocarAnimacaoIdle();
+        }
+    }
+
+    void TocarAnimacaoIdle()
+    {
+        if (ultimaDirecao == 0)
+        {
+            TocarAnimacao("Idle");
+        }
+        else if (ultimaDirecao == 1)
+        {
+            TocarAnimacao("Idle costa");
+        }
+        else if (ultimaDirecao == 2)
+        {
+            TocarAnimacao("Idle frente");
+        }
+    }
+
+    void TocarAnimacao(string nomeAnimacao)
+    {
+        if (animacaoAtual != nomeAnimacao)
+        {
+            animator.Play(nomeAnimacao);
+            animacaoAtual = nomeAnimacao;
+        }
     }
 
     void KnockLogic()
