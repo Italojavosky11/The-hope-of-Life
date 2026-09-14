@@ -5,6 +5,6 @@ public class TelaInicial : MonoBehaviour
 {
     public void Jogar()
     {
-        SceneManager.LoadScene("TelaDeFases");
+        SceneManager.LoadScene("MenuFases");
     }
 }
