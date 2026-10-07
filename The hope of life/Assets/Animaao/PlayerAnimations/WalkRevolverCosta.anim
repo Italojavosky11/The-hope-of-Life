@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Arbustocomcobra
+  m_Name: WalkRevolverCosta
   serializedVersion: 8
   m_Legacy: 0
   m_Compressed: 0
@@ -21,13 +21,13 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -7293540402856043013, guid: 4b765e152e1b71f48859e5612c16b2b4, type: 3}
+      value: {fileID: -2123255596, guid: c438876883cfd944e9d9f6c88bfe7196, type: 3}
     - time: 0.2
-      value: {fileID: -1507937591, guid: 4b765e152e1b71f48859e5612c16b2b4, type: 3}
+      value: {fileID: -1279020643, guid: c438876883cfd944e9d9f6c88bfe7196, type: 3}
     - time: 0.4
-      value: {fileID: -1222861242, guid: 4b765e152e1b71f48859e5612c16b2b4, type: 3}
+      value: {fileID: -1171051800, guid: c438876883cfd944e9d9f6c88bfe7196, type: 3}
     - time: 0.6
-      value: {fileID: 750278719, guid: 4b765e152e1b71f48859e5612c16b2b4, type: 3}
+      value: {fileID: -270479222, guid: c438876883cfd944e9d9f6c88bfe7196, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -51,10 +51,10 @@ AnimationClip:
       isSerializeReferenceCurve: 0
       metaData: 0
     pptrCurveMapping:
-    - {fileID: -7293540402856043013, guid: 4b765e152e1b71f48859e5612c16b2b4, type: 3}
-    - {fileID: -1507937591, guid: 4b765e152e1b71f48859e5612c16b2b4, type: 3}
-    - {fileID: -1222861242, guid: 4b765e152e1b71f48859e5612c16b2b4, type: 3}
-    - {fileID: 750278719, guid: 4b765e152e1b71f48859e5612c16b2b4, type: 3}
+    - {fileID: -2123255596, guid: c438876883cfd944e9d9f6c88bfe7196, type: 3}
+    - {fileID: -1279020643, guid: c438876883cfd944e9d9f6c88bfe7196, type: 3}
+    - {fileID: -1171051800, guid: c438876883cfd944e9d9f6c88bfe7196, type: 3}
+    - {fileID: -270479222, guid: c438876883cfd944e9d9f6c88bfe7196, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

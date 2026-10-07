@@ -4,7 +4,6 @@ public class Player : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public Rigidbody2D rb;
-
     public Animator animator;
 
     public float kBForce;
@@ -17,16 +16,14 @@ public class Player : MonoBehaviour
 
     Vector2 movement;
 
-    int ultimaDirecao = 0;
-    string animacaoAtual = "";
-
     void Update()
     {
         if (!podeMover)
         {
             movement = Vector2.zero;
+
             animator.SetFloat("Speed", 0f);
-            TocarAnimacaoIdle();
+
             return;
         }
 
@@ -35,7 +32,7 @@ public class Player : MonoBehaviour
 
         animator.SetFloat("Speed", movement.magnitude);
 
-        AtualizarAnimacao();
+        AtualizarDirecao();
 
         Flip();
     }
@@ -56,54 +53,19 @@ public class Player : MonoBehaviour
         KnockLogic();
     }
 
-    void AtualizarAnimacao()
+    void AtualizarDirecao()
     {
-        if (movement.magnitude > 0)
+        if (movement.x != 0)
         {
-            if (movement.x != 0)
-            {
-                ultimaDirecao = 0;
-                TocarAnimacao("Walk");
-            }
-            else if (movement.y > 0)
-            {
-                ultimaDirecao = 1;
-                TocarAnimacao("Walk costa");
-            }
-            else if (movement.y < 0)
-            {
-                ultimaDirecao = 2;
-                TocarAnimacao("Walk frente");
-            }
+            animator.SetInteger("Direcao", 0);
         }
-        else
+        else if (movement.y > 0)
         {
-            TocarAnimacaoIdle();
+            animator.SetInteger("Direcao", 1);
         }
-    }
-
-    void TocarAnimacaoIdle()
-    {
-        if (ultimaDirecao == 0)
+        else if (movement.y < 0)
         {
-            TocarAnimacao("Idle");
-        }
-        else if (ultimaDirecao == 1)
-        {
-            TocarAnimacao("Idle costa");
-        }
-        else if (ultimaDirecao == 2)
-        {
-            TocarAnimacao("Idle frente");
-        }
-    }
-
-    void TocarAnimacao(string nomeAnimacao)
-    {
-        if (animacaoAtual != nomeAnimacao)
-        {
-            animator.Play(nomeAnimacao);
-            animacaoAtual = nomeAnimacao;
+            animator.SetInteger("Direcao", 2);
         }
     }
 
