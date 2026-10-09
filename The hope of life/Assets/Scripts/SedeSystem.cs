@@ -3,11 +3,9 @@ using UnityEngine.UI;
 
 public class SedeSystem : MonoBehaviour
 {
-    
     public float sede;
     public float sedeMaxima = 4f;
 
-    
     public Image garrafa;
     public Sprite cheia;
     public Sprite tresQuartos;
@@ -15,11 +13,9 @@ public class SedeSystem : MonoBehaviour
     public Sprite umQuarto;
     public Sprite vazia;
 
-    
     public float tempoParaPerderSede = 50f;
     private float contador;
 
-    
     public HeartSystem heartSystem;
     public float danoSede = 0.5f;
     public float tempoDano = 1f;
@@ -37,6 +33,11 @@ public class SedeSystem : MonoBehaviour
 
     void Update()
     {
+        if (heartSystem != null && heartSystem.vida <= 0)
+        {
+            return;
+        }
+
         contador -= Time.deltaTime;
 
         if (contador <= 0f)
@@ -91,6 +92,16 @@ public class SedeSystem : MonoBehaviour
     {
         sede -= quantidade;
         sede = Mathf.Clamp(sede, 0, sedeMaxima);
+
+        AtualizarGarrafa();
+    }
+
+    public void RestaurarSede()
+    {
+        sede = sedeMaxima;
+
+        contador = tempoParaPerderSede;
+        contadorDano = tempoDano;
 
         AtualizarGarrafa();
     }

@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class HeartSystem : MonoBehaviour
 {
@@ -14,6 +13,8 @@ public class HeartSystem : MonoBehaviour
 
     public Player player;
 
+    private bool morreu = false;
+
     void Start()
     {
         LogicaCoracao();
@@ -21,6 +22,9 @@ public class HeartSystem : MonoBehaviour
 
     public void TomarDano(float dano)
     {
+        if (morreu)
+            return;
+
         vida -= dano;
 
         if (vida < 0)
@@ -58,16 +62,35 @@ public class HeartSystem : MonoBehaviour
 
     void DeadStage()
     {
-        if (vida <= 0)
+        if (vida <= 0 && !morreu)
         {
+            morreu = true;
+
             player.enabled = false;
 
-            Invoke(nameof(ReiniciarFase), 2f);
+            Invoke(nameof(Respawn), 2f);
         }
     }
 
-    void ReiniciarFase()
+    void Respawn()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (CheckpointManager.Instance != null)
+        {
+            CheckpointManager.Instance.Respawn(gameObject);
+        }
+
+        vida = Mathf.Clamp(vida, 0, vidaMaxima);
+
+        morreu = false;
+
+        player.enabled = true;
+
+        LogicaCoracao();
+    }
+
+    public void RestaurarVida(float vidaSalva)
+    {
+        vida = Mathf.Clamp(vidaSalva, 0f, vidaMaxima);
+        LogicaCoracao();
     }
 }
