@@ -10,6 +10,7 @@ public class Arma : MonoBehaviour
     private Animator animatorJogador;
     private SpriteRenderer[] spritesArma;
     private bool atacando;
+    private bool visualArmaMostrado;
 
     void Awake()
     {
@@ -30,7 +31,16 @@ public class Arma : MonoBehaviour
             atacando = pressionandoSpace;
 
             animatorJogador.SetBool("Atacando", atacando);
-            AtualizarVisual(atacando);
+        }
+
+        bool mostrarArmaSeparada = atacando &&
+            animatorJogador != null &&
+            animatorJogador.GetFloat("speed") <= 0.01f;
+
+        if (visualArmaMostrado != mostrarArmaSeparada)
+        {
+            visualArmaMostrado = mostrarArmaSeparada;
+            AtualizarVisual(visualArmaMostrado);
         }
 
         if (pressionandoSpace)
