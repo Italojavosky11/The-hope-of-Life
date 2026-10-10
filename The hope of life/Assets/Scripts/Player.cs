@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,10 +12,15 @@ public class Player : MonoBehaviour
     public float kBTime;
 
     public bool isKnockRight;
-
     public bool podeMover = true;
 
-    Vector2 movement;
+    private Vector2 movement;
+
+    void Awake()
+    {
+        if (animator == null)
+            animator = GetComponent<Animator>();
+    }
 
     void Update()
     {
@@ -22,7 +28,8 @@ public class Player : MonoBehaviour
         {
             movement = Vector2.zero;
 
-            animator.SetFloat("Speed", 0f);
+            if (animator != null)
+                animator.SetFloat("speed", 0f);
 
             return;
         }
@@ -30,9 +37,14 @@ public class Player : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        animator.SetFloat("Speed", movement.magnitude);
+        if (movement.sqrMagnitude > 1f)
+            movement.Normalize();
 
-        AtualizarDirecao();
+        if (animator != null)
+        {
+            animator.SetFloat("speed", movement.magnitude);
+            AtualizarDirecao();
+        }
 
         Flip();
     }
@@ -47,7 +59,9 @@ public class Player : MonoBehaviour
 
         if (kBCount <= 0)
         {
-            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+            rb.MovePosition(
+                rb.position + movement * moveSpeed * Time.fixedDeltaTime
+            );
         }
 
         KnockLogic();
@@ -56,17 +70,11 @@ public class Player : MonoBehaviour
     void AtualizarDirecao()
     {
         if (movement.x != 0)
-        {
             animator.SetInteger("Direcao", 0);
-        }
         else if (movement.y > 0)
-        {
             animator.SetInteger("Direcao", 1);
-        }
         else if (movement.y < 0)
-        {
             animator.SetInteger("Direcao", 2);
-        }
     }
 
     void KnockLogic()
@@ -78,13 +86,9 @@ public class Player : MonoBehaviour
         else
         {
             if (isKnockRight)
-            {
                 rb.linearVelocity = new Vector2(kBForce, kBForce);
-            }
             else
-            {
                 rb.linearVelocity = new Vector2(-kBForce, kBForce);
-            }
 
             kBCount -= Time.deltaTime;
         }
@@ -93,12 +97,8 @@ public class Player : MonoBehaviour
     void Flip()
     {
         if (movement.x > 0)
-        {
             transform.eulerAngles = new Vector2(0, 0);
-        }
         else if (movement.x < 0)
-        {
             transform.eulerAngles = new Vector2(0, 180);
-        }
     }
 }

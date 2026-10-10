@@ -4163,7 +4163,7 @@ Transform:
   m_GameObject: {fileID: 432947866}
   serializedVersion: 2
   m_LocalRotation: {x: 7.479843e-10, y: 0.029995503, z: 1.7403185e-11, w: 0.99955004}
-  m_LocalPosition: {x: 0.078612804, y: -0.62189126, z: -10.157311}
+  m_LocalPosition: {x: 0.27167153, y: -0.6219231, z: -10.168863}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4352,7 +4352,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 7.479843e-10, y: 0.029995503, z: 1.7403185e-11, w: 0.99955004}
-  m_LocalPosition: {x: 0.104521096, y: -0.62359, z: -10.158868}
+  m_LocalPosition: {x: 0.6945201, y: -0.62435997, z: -10.194264}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5973,6 +5973,8 @@ GameObject:
   - component: {fileID: 1373861370}
   - component: {fileID: 1373861371}
   - component: {fileID: 1373861372}
+  - component: {fileID: 1373861374}
+  - component: {fileID: 1373861373}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -6054,7 +6056,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 4784446573688722606, guid: a477b295c1b867942ac8971188d0b9e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6076,7 +6078,7 @@ Transform:
   m_GameObject: {fileID: 1373861364}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.14, y: -0.23, z: 0}
+  m_LocalPosition: {x: -2.1392481, y: -0.23003165, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6185,6 +6187,48 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1373861373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373861364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03f910ad09b881946a1b78f71b958f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimationController
+  idleFrente: {fileID: 7400000, guid: dc3c61f515cffee418e5733ed434596f, type: 2}
+  idleCosta: {fileID: 7400000, guid: f3cb9f95cd1622d4e836495d9ed6fff2, type: 2}
+  walkLado: {fileID: 7400000, guid: 9e946e9dceb9c764ca5b7671ea590819, type: 2}
+  walkFrente: {fileID: 7400000, guid: 556c58c6200e4054e8a0c0c66727d61b, type: 2}
+  walkCosta: {fileID: 7400000, guid: 5418a1d21a174594bbd553f73523cfea, type: 2}
+  walkRevolverLado: {fileID: 7400000, guid: ca23de0b5c251944a97f138f5c542f65, type: 2}
+  walkRevolverFrente: {fileID: 7400000, guid: 1f57537418911bb43bfd98bf5be4e71a, type: 2}
+  walkRevolverCosta: {fileID: 7400000, guid: 6442aa3081b42b041b8627a8dfbb8e07, type: 2}
+  walkColtLado: {fileID: 7400000, guid: 692ed6a463a50954fbac467274a22ec6, type: 2}
+  walkColtFrente: {fileID: 7400000, guid: 8dd6f78e56b43594fad3783a38bf00cb, type: 2}
+  walkColtCosta: {fileID: 7400000, guid: f2a3d004e09967c47a92262843c5fc16, type: 2}
+  walkSpringfieldLado: {fileID: 7400000, guid: 3e131d71b1ef388469e83d180b41eb48, type: 2}
+  walkSpringfieldFrente: {fileID: 7400000, guid: 6887cc77bac92f84d97b04855b98da56, type: 2}
+  walkSpringfieldCosta: {fileID: 7400000, guid: 7544d05e8397f7e42b2adde43b6a6d41, type: 2}
+--- !u!111 &1373861374
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373861364}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
 --- !u!1 &1438928942
 GameObject:
   m_ObjectHideFlags: 0
