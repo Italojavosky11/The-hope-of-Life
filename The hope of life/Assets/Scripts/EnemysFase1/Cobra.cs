@@ -1,20 +1,19 @@
+
 using System;
 using UnityEngine;
 
-/// <summary>
-/// Faz a cobra perseguir o jogador e retornar ao arbusto de onde saiu.
-/// O objeto deve ter um Collider2D marcado como Is Trigger e um Rigidbody2D.
-/// </summary>
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class Cobra : MonoBehaviour
 {
-    [Header("Movimento")]
     [SerializeField, Min(0.1f)] private float velocidade = 4f;
     [SerializeField, Min(0.1f)] private float tempoDePerseguicao = 2f;
     [SerializeField, Min(0.01f)] private float distanciaParaRetornar = 0.05f;
 
-    [Header("Dano")]
+    [Header("Combate")]
     [SerializeField] private float dano = 20f;
+    [SerializeField, Min(0.1f)] private float vidaMaxima = 20f;
+
+    private float vidaAtual;
 
     private Rigidbody2D corpo;
     private Transform jogador;
@@ -27,9 +26,13 @@ public class Cobra : MonoBehaviour
     private void Awake()
     {
         corpo = GetComponent<Rigidbody2D>();
+        vidaAtual = vidaMaxima;
     }
 
-    public void Iniciar(Transform alvo, Vector2 posicaoDeOrigem, Action callbackAoRetornar)
+    public void Iniciar(
+        Transform alvo,
+        Vector2 posicaoDeOrigem,
+        Action callbackAoRetornar)
     {
         jogador = alvo;
         origem = posicaoDeOrigem;
@@ -39,10 +42,16 @@ public class Cobra : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!retornando && (jogador == null || Time.time >= fimDaPerseguicao))
+        if (!retornando &&
+            (jogador == null || Time.time >= fimDaPerseguicao))
+        {
             retornando = true;
+        }
 
-        Vector2 destino = retornando ? origem : (Vector2)jogador.position;
+        Vector2 destino = retornando
+            ? origem
+            : (Vector2)jogador.position;
+
         Vector2 proximaPosicao = Vector2.MoveTowards(
             corpo.position,
             destino,
@@ -52,7 +61,8 @@ public class Cobra : MonoBehaviour
         corpo.MovePosition(proximaPosicao);
         AtualizarDirecao(destino.x - corpo.position.x);
 
-        if (retornando && Vector2.Distance(proximaPosicao, origem) <= distanciaParaRetornar)
+        if (retornando &&
+            Vector2.Distance(proximaPosicao, origem) <= distanciaParaRetornar)
         {
             aoRetornar?.Invoke();
             Destroy(gameObject);
@@ -65,8 +75,25 @@ public class Cobra : MonoBehaviour
             return;
 
         Vector3 escala = transform.localScale;
-        escala.x = Mathf.Abs(escala.x) * (direcaoX >= 0f ? 1f : -1f);
+        escala.x = Mathf.Abs(escala.x) *
+                   (direcaoX >= 0f ? 1f : -1f);
+
         transform.localScale = escala;
+    }
+
+    public void ReceberDano(float quantidade)
+    {
+        if (retornando)
+            return;
+
+        vidaAtual -= quantidade;
+        retornando = true;
+
+        if (vidaAtual <= 0f)
+        {
+            aoRetornar?.Invoke();
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -75,6 +102,7 @@ public class Cobra : MonoBehaviour
             return;
 
         HeartSystem coracoes = other.GetComponent<HeartSystem>();
+
         if (coracoes == null)
             return;
 

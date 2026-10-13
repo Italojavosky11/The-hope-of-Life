@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - UI
+  - chao
   layers:
   - Default
   - TransparentFX
@@ -47,3 +48,4 @@ TagManager:
     locked: 0
   m_RenderingLayers:
   - Default
+  m_MigratedRenderPipelines: []

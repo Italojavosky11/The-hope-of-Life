@@ -44,13 +44,21 @@ public class Inventory : MonoBehaviour
             return;
 
         Transform slotDestino = EncontrarSlotSobOMouse(itemArrastado);
+        Transform slotOrigem = itemArrastado.transform.parent;
 
-        if (slotDestino != null)
+        if (slotDestino != null && slotOrigem != null)
         {
-            Transform slotOrigem = itemArrastado.transform.parent;
-
             if (slotOrigem != slotDestino)
             {
+                if (EhPrimeiroSlot(slotDestino) &&
+                    !ItemPodeSerEquipado(itemArrastado))
+                {
+                    itemArrastado.transform.SetParent(slotOrigem, false);
+                    itemArrastado.transform.localPosition = Vector3.zero;
+                    mouseItem = null;
+                    return;
+                }
+
                 Transform itemNoDestino = null;
 
                 for (int i = 0; i < slotDestino.childCount; i++)
@@ -64,10 +72,24 @@ public class Inventory : MonoBehaviour
                     }
                 }
 
+                if (itemNoDestino != null &&
+                    EhPrimeiroSlot(slotDestino) &&
+                    !ItemPodeSerEquipado(itemNoDestino.gameObject))
+                {
+                    itemArrastado.transform.SetParent(slotOrigem, false);
+                    itemArrastado.transform.localPosition = Vector3.zero;
+                    mouseItem = null;
+                    return;
+                }
+
                 itemArrastado.transform.SetParent(slotDestino, false);
+                itemArrastado.transform.localPosition = Vector3.zero;
 
                 if (itemNoDestino != null)
+                {
                     itemNoDestino.SetParent(slotOrigem, false);
+                    itemNoDestino.localPosition = Vector3.zero;
+                }
 
                 if (EhPrimeiroSlot(slotOrigem) ||
                     EhPrimeiroSlot(slotDestino))
@@ -119,6 +141,26 @@ public class Inventory : MonoBehaviour
                slot.name == "Slot1";
     }
 
+    private DataArma ObterDataArma(GameObject itemUI)
+    {
+        if (itemUI == null ||
+            !int.TryParse(itemUI.name, out int indice) ||
+            item == null ||
+            indice < 0 ||
+            indice >= item.Length)
+            return null;
+
+        return item[indice].dataArma;
+    }
+
+    private bool ItemPodeSerEquipado(GameObject itemUI)
+    {
+        DataArma dataArma = ObterDataArma(itemUI);
+
+        return dataArma != null &&
+               GerenciadorArmas.EstaDesbloqueada(dataArma);
+    }
+
     private void EquiparArmaDoPrimeiroSlot()
     {
         if (jogador == null)
@@ -147,7 +189,9 @@ public class Inventory : MonoBehaviour
 
         DataArma dataArma = item[indice].dataArma;
 
-        if (dataArma == null || dataArma.prefabArma == null)
+        if (dataArma == null ||
+            dataArma.prefabArma == null ||
+            !GerenciadorArmas.EstaDesbloqueada(dataArma))
         {
             RemoverArmaEquipada();
             AtualizarArmaAtual(0);

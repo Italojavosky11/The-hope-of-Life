@@ -182,10 +182,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 393208d742ed94d4bbc10cbc9065cd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cobra
-  velocidade: 4
+  velocidade: 2
   tempoDePerseguicao: 2
   distanciaParaRetornar: 0.05
   dano: 1
+  vidaMaxima: 20
 --- !u!111 &-7956923960294900792
 Animation:
   m_ObjectHideFlags: 0

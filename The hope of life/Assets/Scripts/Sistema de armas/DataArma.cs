@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Nova Arma", menuName = "Game/Weapon Data")]
@@ -5,6 +6,9 @@ public class DataArma : ScriptableObject
 {
     public string weaponName;
     public Sprite icon;
+
+    [Header("Desbloqueio")]
+    public bool desbloqueadaInicialmente;
 
     public GameObject prefabArma;
     public GameObject prefabBala;
