@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +13,8 @@ public class SedeSystem : MonoBehaviour
     public Sprite metade;
     public Sprite umQuarto;
     public Sprite vazia;
-
+    public float tempoRecuperarVida = 5f;
+    private float contadorRecuperarVida;
     public float tempoParaPerderSede = 50f;
     private float contador;
 
@@ -38,6 +40,21 @@ public class SedeSystem : MonoBehaviour
             return;
         }
 
+        if (sede >= sedeMaxima && heartSystem != null)
+        {
+            contadorRecuperarVida -= Time.deltaTime;
+
+            if (contadorRecuperarVida <= 0f)
+            {
+                heartSystem.RestaurarVida(heartSystem.vidaMaxima);
+                contadorRecuperarVida = tempoRecuperarVida;
+            }
+        }
+        else
+        {
+            contadorRecuperarVida = tempoRecuperarVida;
+        }
+
         contador -= Time.deltaTime;
 
         if (contador <= 0f)
@@ -52,7 +69,11 @@ public class SedeSystem : MonoBehaviour
 
             if (contadorDano <= 0)
             {
-                heartSystem.TomarDano(danoSede);
+                if (heartSystem != null)
+                {
+                    heartSystem.TomarDano(danoSede);
+                }
+
                 contadorDano = tempoDano;
             }
         }
@@ -66,19 +87,22 @@ public class SedeSystem : MonoBehaviour
     {
         sede = Mathf.Clamp(sede, 0, sedeMaxima);
 
-        if (sede == 4)
+        if (garrafa == null)
+            return;
+
+        if (sede >= sedeMaxima)
         {
             garrafa.sprite = cheia;
         }
-        else if (sede == 3)
+        else if (sede >= 3)
         {
             garrafa.sprite = tresQuartos;
         }
-        else if (sede == 2)
+        else if (sede >= 2)
         {
             garrafa.sprite = metade;
         }
-        else if (sede == 1)
+        else if (sede >= 1)
         {
             garrafa.sprite = umQuarto;
         }
