@@ -11,6 +11,8 @@ public class inventoryManager : MonoBehaviour
     void Start()
     {
         inventarioCanvas.SetActive(false);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     void Update()
@@ -20,11 +22,11 @@ public class inventoryManager : MonoBehaviour
             inventarioAberto = !inventarioAberto;
             inventarioCanvas.SetActive(inventarioAberto);
 
-            // Mostra ou esconde o mouse
-            Cursor.visible = inventarioAberto;
+            // Mantém o cursor visível
+            Cursor.visible = true;
 
-            // Libera ou trava o mouse
-            Cursor.lockState = inventarioAberto ? CursorLockMode.None : CursorLockMode.Locked;
+            // Mantém o cursor livre para continuar usando o mouse
+            Cursor.lockState = CursorLockMode.None;
         }
     }        
 
