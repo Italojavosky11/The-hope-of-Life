@@ -8,6 +8,9 @@ public class BauArma : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private string parametroAbrir = "Abrir";
 
+    [Header("Indicador de interacao")]
+    [SerializeField] private SpriteRenderer indicadorTecla;
+
     [Header("Arma desbloqueada")]
     [SerializeField] private DataArma armaDesbloqueada;
 
@@ -22,15 +25,25 @@ public class BauArma : MonoBehaviour
 
         if (animator == null)
             animator = GetComponent<Animator>();
+
+        AtualizarIndicador();
     }
 
     private void Update()
     {
+        AtualizarIndicador();
+
         if (!jogadorPerto || abrindo || aberto)
             return;
 
         if (Input.GetKeyDown(KeyCode.T))
             AbrirBau();
+    }
+
+    private void AtualizarIndicador()
+    {
+        if (indicadorTecla != null)
+            indicadorTecla.enabled = jogadorPerto && !abrindo && !aberto;
     }
 
     private void AbrirBau()
