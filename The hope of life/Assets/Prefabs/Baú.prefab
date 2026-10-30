@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5814839805247252757}
   - component: {fileID: 5709123785586639225}
   - component: {fileID: 8214160373846935741}
-  - component: {fileID: 90000001}
   m_Layer: 0
   m_Name: "Ba\xFA"
   m_TagString: Untagged

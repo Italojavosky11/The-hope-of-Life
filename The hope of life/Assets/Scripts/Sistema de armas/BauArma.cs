@@ -26,6 +26,9 @@ public class BauArma : MonoBehaviour
         if (animator == null)
             animator = GetComponent<Animator>();
 
+        if (indicadorTecla == null)
+            indicadorTecla = GetComponentInChildren<SpriteRenderer>(true);
+
         AtualizarIndicador();
     }
 
