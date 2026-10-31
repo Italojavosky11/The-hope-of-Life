@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(Collider2D), typeof(InteractionManager))]
 public class BauArma : MonoBehaviour
 {
     [Header("Animacao")]
@@ -11,36 +11,38 @@ public class BauArma : MonoBehaviour
     [Header("Arma desbloqueada")]
     [SerializeField] private DataArma armaDesbloqueada;
 
-    private bool jogadorPerto;
     private bool abrindo;
     private bool aberto;
 
     private void Awake()
     {
-        Collider2D colisor = GetComponent<Collider2D>();
-        colisor.isTrigger = true;
+        if (GetComponent<InteractionManager>() == null)
+            gameObject.AddComponent<InteractionManager>();
 
         if (animator == null)
             animator = GetComponent<Animator>();
 
     }
 
-    private void Update()
+    public bool PodeInteragir
     {
-        if (!jogadorPerto || abrindo || aberto)
-            return;
-
-        if (Input.GetKeyDown(KeyCode.T))
-            AbrirBau();
+        get { return !abrindo && !aberto; }
     }
 
-    private void AbrirBau()
+    public bool Interagir()
     {
         if (animator == null || armaDesbloqueada == null)
-            return;
+        {
+            Debug.LogError(
+                "Configure o Animator e a arma a desbloquear no baú.",
+                this
+            );
+            return false;
+        }
 
         abrindo = true;
         animator.SetTrigger(parametroAbrir);
+        return true;
     }
 
     public void FinalizarAbertura()
@@ -52,17 +54,5 @@ public class BauArma : MonoBehaviour
 
         aberto = true;
         abrindo = false;
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-            jogadorPerto = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-            jogadorPerto = false;
     }
 }

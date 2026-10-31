@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5814839805247252757}
   - component: {fileID: 5709123785586639225}
   - component: {fileID: 8214160373846935741}
+  - component: {fileID: 3203194390169371933}
   m_Layer: 0
   m_Name: "Ba\xFA"
   m_TagString: Untagged
@@ -178,3 +179,17 @@ MonoBehaviour:
   animator: {fileID: 5709123785586639225}
   parametroAbrir: Abrir
   armaDesbloqueada: {fileID: 11400000, guid: 8892c39adea74a74ba449e66e5f9d6a3, type: 2}
+--- !u!114 &3203194390169371933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5902650557488862838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a87132154497f94ca47679174b0648c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractionManager
+  teclaInteracao: 116
+  imagemTeclaT: {fileID: 21300000, guid: a2923e717e5be3a47a3f45d7cdac0ddb, type: 3}
