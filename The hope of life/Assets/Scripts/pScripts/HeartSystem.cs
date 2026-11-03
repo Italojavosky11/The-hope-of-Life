@@ -14,6 +14,12 @@ public class HeartSystem : MonoBehaviour
     public Player player;
 
     private bool morreu = false;
+    private EfeitoDano efeitoDano;
+
+    void Awake()
+    {
+        efeitoDano = GetComponent<EfeitoDano>();
+    }
 
     void Start()
     {
@@ -26,6 +32,9 @@ public class HeartSystem : MonoBehaviour
             return;
 
         vida -= dano;
+
+        if (dano > 0f)
+            efeitoDano?.AtivarEfeitoDano();
 
         if (vida < 0)
             vida = 0;
