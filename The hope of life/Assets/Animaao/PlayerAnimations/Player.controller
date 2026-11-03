@@ -687,6 +687,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -7951790968427274953}
     m_Position: {x: 50, y: 460, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 8505001708199705339}
+    m_Position: {x: 85, y: 525, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: -4691934622462070237}
@@ -700,16 +703,16 @@ AnimatorStateMachine:
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: -8844055331035428306}
-    second:
-    - {fileID: 1438429258368927654}
-    - {fileID: -572396479649384854}
-    - {fileID: -4065652461016992526}
   - first: {fileID: -4691934622462070237}
     second:
     - {fileID: 2379889830483131121}
     - {fileID: -7353775322786870149}
     - {fileID: 3329597005135238097}
+  - first: {fileID: -8844055331035428306}
+    second:
+    - {fileID: 1438429258368927654}
+    - {fileID: -572396479649384854}
+    - {fileID: -4065652461016992526}
   - first: {fileID: 6415927753957529350}
     second:
     - {fileID: -3752851090694948232}
@@ -2365,6 +2368,32 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1102 &8505001708199705339
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: pLevandoDanoFrente
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 1a1d23e6f002a7f459d37bfe5a381a07, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1101 &8530476486297779458
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
