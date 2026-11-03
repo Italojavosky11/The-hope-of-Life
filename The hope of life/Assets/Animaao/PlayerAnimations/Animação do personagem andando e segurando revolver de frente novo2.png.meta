@@ -1,19 +1,23 @@
 fileFormatVersion: 2
-guid: 70c5d71e4c30c2c4899e73cf359673b3
+guid: a29e57348df2d3c4bb801beb0bfb7d41
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4556142224287042057
-    second: animation costa -Sheet_0
+      213: 8767596149593179844
+    second: "Anima\xE7\xE3o do personagem andando e segurando revolver de frente
+      novo2_0"
   - first:
-      213: 4307522081432950680
-    second: animation costa -Sheet_1
+      213: -6309680008334073364
+    second: "Anima\xE7\xE3o do personagem andando e segurando revolver de frente
+      novo2_1"
   - first:
-      213: 8628843121330386490
-    second: animation costa -Sheet_2
+      213: -3673737907604353683
+    second: "Anima\xE7\xE3o do personagem andando e segurando revolver de frente
+      novo2_2"
   - first:
-      213: -511312829236916859
-    second: animation costa -Sheet_3
+      213: 1224669072542455001
+    second: "Anima\xE7\xE3o do personagem andando e segurando revolver de frente
+      novo2_3"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -93,85 +97,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: VisionOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: tvOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -187,7 +113,8 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: animation costa -Sheet_0
+      name: "Anima\xE7\xE3o do personagem andando e segurando revolver de frente
+        novo2_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -202,14 +129,15 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7f5763759c455c0c0800000000000000
-      internalID: -4556142224287042057
+      spriteID: 4c6859ece32cca970800000000000000
+      internalID: 8767596149593179844
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animation costa -Sheet_1
+      name: "Anima\xE7\xE3o do personagem andando e segurando revolver de frente
+        novo2_1"
       rect:
         serializedVersion: 2
         x: 32
@@ -224,14 +152,15 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 89756f5c28467cb30800000000000000
-      internalID: 4307522081432950680
+      spriteID: ce12dd866738f68a0800000000000000
+      internalID: -6309680008334073364
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animation costa -Sheet_2
+      name: "Anima\xE7\xE3o do personagem andando e segurando revolver de frente
+        novo2_2"
       rect:
         serializedVersion: 2
         x: 64
@@ -246,14 +175,15 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a36787de91fcfb770800000000000000
-      internalID: 8628843121330386490
+      spriteID: d6d0b5b56d2440dc0800000000000000
+      internalID: -3673737907604353683
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animation costa -Sheet_3
+      name: "Anima\xE7\xE3o do personagem andando e segurando revolver de frente
+        novo2_3"
       rect:
         serializedVersion: 2
         x: 96
@@ -268,8 +198,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 58dcb3cd0b377e8f0800000000000000
-      internalID: -511312829236916859
+      spriteID: 9d4dc4c6806eef010800000000000000
+      internalID: 1224669072542455001
       vertices: []
       indices: 
       edges: []
@@ -278,7 +208,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 87833d0c33b062946a5c982b916e29be
+    spriteID: e9e5db759d0247746a8e3019b169c6b9
     internalID: 0
     vertices: []
     indices: 
@@ -290,10 +220,10 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      animation costa -Sheet_0: -4556142224287042057
-      animation costa -Sheet_1: 4307522081432950680
-      animation costa -Sheet_2: 8628843121330386490
-      animation costa -Sheet_3: -511312829236916859
+      "Anima\xE7\xE3o do personagem andando e segurando revolver de frente novo2_0": 8767596149593179844
+      "Anima\xE7\xE3o do personagem andando e segurando revolver de frente novo2_1": -6309680008334073364
+      "Anima\xE7\xE3o do personagem andando e segurando revolver de frente novo2_2": -3673737907604353683
+      "Anima\xE7\xE3o do personagem andando e segurando revolver de frente novo2_3": 1224669072542455001
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
