@@ -33,29 +33,9 @@ public class Arma : MonoBehaviour
             animatorJogador.SetBool("Atacando", atacando);
         }
 
-        bool jogadorParado = animatorJogador != null &&
-            animatorJogador.GetFloat("speed") <= 0.01f;
-
-        if (pressionandoSpace && jogadorParado &&
-            !animatorJogador.GetCurrentAnimatorStateInfo(0)
-                .IsName("AtirandoRevolverParado"))
-        {
-            animatorJogador.Play("AtirandoRevolverParado", 0, 0f);
-        }
-        else if (!pressionandoSpace && animatorJogador != null &&
-            animatorJogador.GetCurrentAnimatorStateInfo(0)
-                .IsName("AtirandoRevolverParado"))
-        {
-            int direcao = animatorJogador.GetInteger("Direcao");
-            string estadoParado = direcao == 1
-                ? "Idle costa"
-                : direcao == 2 ? "Idle frente" : "Idle";
-
-            animatorJogador.Play(estadoParado, 0, 0f);
-        }
-
         bool mostrarArmaSeparada = atacando &&
-            jogadorParado;
+            animatorJogador != null &&
+            animatorJogador.GetFloat("speed") <= 0.01f;
 
         if (visualArmaMostrado != mostrarArmaSeparada)
         {
