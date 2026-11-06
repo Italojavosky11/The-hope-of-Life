@@ -69,7 +69,10 @@ public class Player : MonoBehaviour
 
     void AtualizarDirecao()
     {
-        if (movement.x != 0)
+        // O Animator tem animações para três eixos visuais: lado, costas e frente.
+        // Em diagonais, use o eixo dominante para que a animação acompanhe
+        // a direção em que o jogador está avançando.
+        if (Mathf.Abs(movement.x) > Mathf.Abs(movement.y))
             animator.SetInteger("Direcao", 0);
         else if (movement.y > 0)
             animator.SetInteger("Direcao", 1);
