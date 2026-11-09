@@ -10,10 +10,12 @@ public class CutsceneManager : MonoBehaviour
     [SerializeField] private TMP_Text textoHistoria;
     [SerializeField] private TMP_Text textoContinuar;
 
+    [Header("Efeito de Digitação")]
+    [SerializeField] private AudioSource audioSource;
+
     [Header("Configurações")]
     [SerializeField] private string cenaGameplay = "Fase1";
     [SerializeField] private float velocidadeTexto = 0.04f;
-    [SerializeField] private AudioClip audioDigitacao;
 
     [Header("Textos da Cutscene")]
     [TextArea(3, 6)]
@@ -42,6 +44,7 @@ public class CutsceneManager : MonoBehaviour
             if (escrevendo)
             {
                 StopCoroutine(rotinaAtual);
+                audioSource.Stop();
                 textoHistoria.text = textos[indiceAtual];
                 escrevendo = false;
             }
@@ -63,16 +66,20 @@ public class CutsceneManager : MonoBehaviour
     private IEnumerator ExibirTexto()
     {
         escrevendo = true;
-        if (audioDigitacao != null)
-            AudioSource.PlayClipAtPoint(audioDigitacao, Camera.main != null ? Camera.main.transform.position : Vector3.zero);
         textoContinuar.gameObject.SetActive(false);
         textoHistoria.text = "";
+
+        if (audioSource != null)
+            audioSource.Play();
 
         foreach (char letra in textos[indiceAtual])
         {
             textoHistoria.text += letra;
             yield return new WaitForSeconds(velocidadeTexto);
         }
+
+        if (audioSource != null)
+            audioSource.Stop();
 
         escrevendo = false;
         textoContinuar.gameObject.SetActive(true);
