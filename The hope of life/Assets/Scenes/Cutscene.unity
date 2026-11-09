@@ -368,6 +368,7 @@ MonoBehaviour:
   textoContinuar: {fileID: 52283991}
   cenaGameplay: Fase1
   velocidadeTexto: 0.06
+  audioDigitacao: {fileID: 8300000, guid: d13b51a67c4d4dbd87a326ccd2b1482f, type: 3}
   textos:
   - "Em 1848, pr\xF3ximo \xE0 fronteira entre os Estados Unidos e o M\xE9xico, existia
     uma pequena comunidade chamada Vila de Santa Esperan\xE7a. Seus habitantes viviam
@@ -859,3 +860,4 @@ SceneRoots:
   - {fileID: 2137515593}
   - {fileID: 306561327}
   - {fileID: 750395853}
+

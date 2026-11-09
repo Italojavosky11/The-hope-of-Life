@@ -13,6 +13,7 @@ public class CutsceneManager : MonoBehaviour
     [Header("Configurações")]
     [SerializeField] private string cenaGameplay = "Fase1";
     [SerializeField] private float velocidadeTexto = 0.04f;
+    [SerializeField] private AudioClip audioDigitacao;
 
     [Header("Textos da Cutscene")]
     [TextArea(3, 6)]
@@ -62,6 +63,8 @@ public class CutsceneManager : MonoBehaviour
     private IEnumerator ExibirTexto()
     {
         escrevendo = true;
+        if (audioDigitacao != null)
+            AudioSource.PlayClipAtPoint(audioDigitacao, Camera.main != null ? Camera.main.transform.position : Vector3.zero);
         textoContinuar.gameObject.SetActive(false);
         textoHistoria.text = "";
 
