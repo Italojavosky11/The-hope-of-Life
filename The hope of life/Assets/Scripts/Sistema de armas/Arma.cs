@@ -10,7 +10,6 @@ public class Arma : MonoBehaviour
     private Animator animatorJogador;
     private SpriteRenderer[] spritesArma;
     private bool atacando;
-    private bool visualArmaMostrado;
 
     void Awake()
     {
@@ -31,16 +30,6 @@ public class Arma : MonoBehaviour
             atacando = pressionandoSpace;
 
             animatorJogador.SetBool("Atacando", atacando);
-        }
-
-        bool mostrarArmaSeparada = atacando &&
-            animatorJogador != null &&
-            animatorJogador.GetFloat("speed") <= 0.01f;
-
-        if (visualArmaMostrado != mostrarArmaSeparada)
-        {
-            visualArmaMostrado = mostrarArmaSeparada;
-            AtualizarVisual(visualArmaMostrado);
         }
 
         if (pressionandoSpace)
@@ -66,9 +55,11 @@ public class Arma : MonoBehaviour
 
         Quaternion rotacao = Quaternion.Euler(0f, 0f, angulo);
 
+        Vector3 pontoSaida = ObterPontoSaidaBala(direcao);
+
         GameObject bala = Instantiate(
             dataArma.prefabBala,
-            firePoint.position,
+            pontoSaida,
             rotacao
         );
 
@@ -76,6 +67,23 @@ public class Arma : MonoBehaviour
 
         if (balaScript != null)
             balaScript.Configurar(dataArma);
+    }
+
+    Vector3 ObterPontoSaidaBala(Vector2 direcao)
+    {
+        // Mantém o ponto configurado na arma para tiros laterais.
+        if (Mathf.Abs(direcao.x) > Mathf.Abs(direcao.y))
+            return firePoint.position;
+
+        // Nos tiros verticais, usa a distância do ponto da arma ao player
+        // e move a saída para a frente na direção da animação.
+        float distanciaDoPlayer = Vector2.Distance(
+            animatorJogador.transform.position,
+            firePoint.position
+        );
+
+        return animatorJogador.transform.position +
+               (Vector3)(direcao.normalized * distanciaDoPlayer);
     }
 
     Vector2 ObterDirecaoTiro()
