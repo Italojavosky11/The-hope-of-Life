@@ -23,10 +23,17 @@ public class InimigoGangueFase1 : MonoBehaviour
     public Transform pontoInferior;
     public float velocidadeCombate = 1.5f;
 
+    [Header("Pausa na Cobertura")]
+    public float tempoParadoEmCadaPonto = 2f;
+
     private Rigidbody2D rb;
+    private Animator animator;
+    private Vector2 posicaoAnterior;
 
     private Transform destinoPatrulha;
     private Transform destinoVertical;
+    private float tempoRestanteParado;
+    private bool aguardandoNoPonto;
 
     private enum Estado
     {
@@ -40,6 +47,8 @@ public class InimigoGangueFase1 : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        posicaoAnterior = rb.position;
     }
 
     void Start()
@@ -68,6 +77,18 @@ public class InimigoGangueFase1 : MonoBehaviour
                 MovimentarNaCobertura();
                 break;
         }
+
+        AtualizarAnimacao();
+    }
+
+    void AtualizarAnimacao()
+    {
+        if (animator == null)
+            return;
+
+        bool estaSeMovendo = (rb.position - posicaoAnterior).sqrMagnitude > 0.000001f;
+        animator.SetBool("Movendo", estaSeMovendo);
+        posicaoAnterior = rb.position;
     }
 
     void Patrulhar()
@@ -121,6 +142,7 @@ public class InimigoGangueFase1 : MonoBehaviour
         {
             estadoAtual = Estado.EmCombate;
             destinoVertical = pontoSuperior;
+            aguardandoNoPonto = false;
         }
     }
 
@@ -128,6 +150,18 @@ public class InimigoGangueFase1 : MonoBehaviour
     {
         if (pontoSuperior == null || pontoInferior == null)
             return;
+
+        if (aguardandoNoPonto)
+        {
+            tempoRestanteParado -= Time.fixedDeltaTime;
+            if (tempoRestanteParado > 0f)
+                return;
+
+            destinoVertical = destinoVertical == pontoSuperior
+                ? pontoInferior
+                : pontoSuperior;
+            aguardandoNoPonto = false;
+        }
 
         Vector2 novaPosicao = Vector2.MoveTowards(
             rb.position,
@@ -139,9 +173,8 @@ public class InimigoGangueFase1 : MonoBehaviour
 
         if (Vector2.Distance(novaPosicao, destinoVertical.position) < 0.01f)
         {
-            destinoVertical = destinoVertical == pontoSuperior
-                ? pontoInferior
-                : pontoSuperior;
+            aguardandoNoPonto = true;
+            tempoRestanteParado = Mathf.Max(0f, tempoParadoEmCadaPonto);
         }
     }
 }
