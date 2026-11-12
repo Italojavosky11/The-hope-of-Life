@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
+
 
 public class CutsceneManager : MonoBehaviour
 {
@@ -14,8 +16,12 @@ public class CutsceneManager : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
 
     [Header("Configurações")]
-    [SerializeField] private string cenaGameplay = "Fase1";
+    [SerializeField] private string cenaGameplay = "Level1";
     [SerializeField] private float velocidadeTexto = 0.04f;
+
+    [Header("Imagens da Cutscene")]
+    [SerializeField] private Image imagemVilaNormal;
+    [SerializeField] private Image imagemVilaDestruida;
 
     [Header("Textos da Cutscene")]
     [TextArea(3, 6)]
@@ -66,6 +72,9 @@ public class CutsceneManager : MonoBehaviour
     private IEnumerator ExibirTexto()
     {
         escrevendo = true;
+
+        AtualizarImagem();
+
         textoContinuar.gameObject.SetActive(false);
         textoHistoria.text = "";
 
@@ -83,6 +92,13 @@ public class CutsceneManager : MonoBehaviour
 
         escrevendo = false;
         textoContinuar.gameObject.SetActive(true);
+    }
+
+    private void AtualizarImagem()
+    {
+        imagemVilaNormal.gameObject.SetActive(indiceAtual == 0);
+
+        imagemVilaDestruida.gameObject.SetActive(indiceAtual == 3);
     }
 
     private void FinalizarCutscene()
