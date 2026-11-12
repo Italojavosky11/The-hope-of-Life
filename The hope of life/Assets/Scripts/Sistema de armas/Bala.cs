@@ -93,7 +93,15 @@ public class Bala : MonoBehaviour
             return;
         }
 
-        // Barril de água
+        InimigoGangue2 gangue2 = other.GetComponentInParent<InimigoGangue2>();
+        if (gangue2 != null)
+        {
+            gangue2.ReceberDano(damage);
+            Destroy(gameObject);
+            return;
+        }
+
+        // Barril de ï¿½gua
         BarrilDeAgua barril = other.GetComponentInParent<BarrilDeAgua>();
         if (barril != null)
         {
@@ -112,7 +120,7 @@ public class Bala : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Default"))
             return;
 
-        // Qualquer outro colisor destrói a bala
+        // Qualquer outro colisor destrï¿½i a bala
         Destroy(gameObject);
     }
 }
