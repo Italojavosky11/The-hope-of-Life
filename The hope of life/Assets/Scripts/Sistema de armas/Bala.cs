@@ -7,6 +7,8 @@ public class Bala : MonoBehaviour
     public float lifeTime;
 
     private Vector2 direcao;
+    private bool balaDoInimigo;
+    private bool impactoResolvido;
 
     public void Configurar(DataArma dataArma)
     {
@@ -24,6 +26,25 @@ public class Bala : MonoBehaviour
         Destroy(gameObject, lifeTime);
     }
 
+    public void ConfigurarParaInimigo(
+        Sprite spriteBala,
+        float danoJogador,
+        float velocidade,
+        float tempoDeVida)
+    {
+        speed = velocidade;
+        damage = danoJogador;
+        lifeTime = tempoDeVida;
+        balaDoInimigo = true;
+        direcao = transform.right;
+
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+            spriteRenderer.sprite = spriteBala;
+
+        Destroy(gameObject, lifeTime);
+    }
+
     void Update()
     {
         transform.position += (Vector3)(direcao * speed * Time.deltaTime);
@@ -31,11 +52,43 @@ public class Bala : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (balaDoInimigo)
+        {
+            if (impactoResolvido)
+                return;
+
+            if (other.GetComponentInParent<InimigoGangueFase1>() != null)
+                return;
+
+            HeartSystem coracoes = other.GetComponentInParent<HeartSystem>();
+            if (coracoes != null)
+            {
+                impactoResolvido = true;
+                coracoes.TomarDano(damage);
+                Destroy(gameObject);
+                return;
+            }
+
+            if (other.CompareTag("Bala") ||
+                other.gameObject.layer == LayerMask.NameToLayer("Default"))
+                return;
+
+            Destroy(gameObject);
+            return;
+        }
         // Prioriza inimigos (cobra)
         Cobra cobra = other.GetComponentInParent<Cobra>();
         if (cobra != null)
         {
             cobra.ReceberDano(damage);
+            Destroy(gameObject);
+            return;
+        }
+
+        InimigoGangueFase1 gangue = other.GetComponentInParent<InimigoGangueFase1>();
+        if (gangue != null)
+        {
+            gangue.ReceberDano(damage);
             Destroy(gameObject);
             return;
         }

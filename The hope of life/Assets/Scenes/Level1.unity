@@ -7692,7 +7692,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.244764, y: -18.088549, z: -10}
+  m_LocalPosition: {x: 28.237587, y: -18.08858, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8332,8 +8332,9 @@ GameObject:
   - component: {fileID: 981702058}
   - component: {fileID: 981702057}
   - component: {fileID: 981702056}
+  - component: {fileID: 981702062}
   m_Layer: 0
-  m_Name: Gangue1 - Capanga 1
+  m_Name: Capanga 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8411,16 +8412,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InimigoGangueFase1
   jogador: {fileID: 1373861368}
-  pontoInicial: {fileID: 2098002159}
-  pontoFinal: {fileID: 2108833479}
+  pontoInicial: {fileID: 1791773438}
+  pontoFinal: {fileID: 2045442549}
   velocidadePatrulha: 2
   distanciaDeteccao: 5
-  pontoDeCobertura: {fileID: 1482048987}
+  pontoDeCobertura: {fileID: 1007843655}
   velocidadeCobertura: 3
-  pontoSuperior: {fileID: 173152543}
-  pontoInferior: {fileID: 471438276}
+  pontoSuperior: {fileID: 1145515737}
+  pontoInferior: {fileID: 1909618846}
   velocidadeCombate: 1.5
   tempoParadoEmCadaPonto: 2
+  vidaMaxima: 125
 --- !u!50 &981702059
 Rigidbody2D:
   serializedVersion: 5
@@ -8523,6 +8525,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &981702062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981702055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40714b2c21d145f78a62978238b5a263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AtaqueGangue
+  prefabBala: {fileID: 5326405770366764487, guid: 3e894502bc78f3f469016acff90323fb, type: 3}
+  spriteBala: {fileID: 21300000, guid: b068a62afa2ed5b45bb032e06cc673c5, type: 3}
+  danoJogador: 1
+  velocidadeBala: 8
+  duracaoBala: 4
+  intervaloEntreDisparos: 1.5
+  deslocamentoSaida: {x: 0.55, y: 0.1}
+--- !u!4 &1007843655 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7255932658190757155, guid: e27c4641155880a42838a5685dec1bc6, type: 3}
+  m_PrefabInstance: {fileID: 869644752}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1049627466
 GameObject:
   m_ObjectHideFlags: 0
@@ -8976,6 +9002,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1093534894}
   m_CullTransparentMesh: 1
+--- !u!4 &1145515737 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6374259173561442264, guid: e27c4641155880a42838a5685dec1bc6, type: 3}
+  m_PrefabInstance: {fileID: 869644752}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1180607359
 GameObject:
   m_ObjectHideFlags: 0
@@ -17166,8 +17197,9 @@ GameObject:
   - component: {fileID: 1669060894}
   - component: {fileID: 1669060899}
   - component: {fileID: 1669060900}
+  - component: {fileID: 1669060901}
   m_Layer: 0
-  m_Name: Gangue1 - Capanga 2
+  m_Name: Capanga 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17196,6 +17228,7 @@ MonoBehaviour:
   pontoInferior: {fileID: 471438276}
   velocidadeCombate: 1.5
   tempoParadoEmCadaPonto: 2
+  vidaMaxima: 125
 --- !u!50 &1669060895
 Rigidbody2D:
   serializedVersion: 5
@@ -17357,6 +17390,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1669060901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669060893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40714b2c21d145f78a62978238b5a263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AtaqueGangue
+  prefabBala: {fileID: 5326405770366764487, guid: 3e894502bc78f3f469016acff90323fb, type: 3}
+  spriteBala: {fileID: 21300000, guid: b068a62afa2ed5b45bb032e06cc673c5, type: 3}
+  danoJogador: 1
+  velocidadeBala: 6
+  duracaoBala: 4
+  intervaloEntreDisparos: 1.5
+  deslocamentoSaida: {x: 0.55, y: 0.1}
 --- !u!1 &1669263979
 GameObject:
   m_ObjectHideFlags: 0
@@ -17705,6 +17757,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1791773438 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3944916200555353634, guid: e27c4641155880a42838a5685dec1bc6, type: 3}
+  m_PrefabInstance: {fileID: 869644752}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1868744181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17922,6 +17979,11 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!4 &1909618846 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1241616827523325773, guid: e27c4641155880a42838a5685dec1bc6, type: 3}
+  m_PrefabInstance: {fileID: 869644752}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1917157293
 GameObject:
   m_ObjectHideFlags: 0
@@ -18540,6 +18602,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2023885270}
   m_CullTransparentMesh: 1
+--- !u!4 &2045442549 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4876369475616117200, guid: e27c4641155880a42838a5685dec1bc6, type: 3}
+  m_PrefabInstance: {fileID: 869644752}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2053521540
 GameObject:
   m_ObjectHideFlags: 0
@@ -18914,34 +18981,34 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 2011000002}
-  - {fileID: 519420032}
-  - {fileID: 619394802}
-  - {fileID: 2768052519870038548}
-  - {fileID: 28332480}
-  - {fileID: 1772944214}
-  - {fileID: 1532210704}
-  - {fileID: 1598466006}
-  - {fileID: 85365789}
-  - {fileID: 1049627468}
-  - {fileID: 74192951}
-  - {fileID: 1895562140}
-  - {fileID: 416556435}
-  - {fileID: 431244640}
-  - {fileID: 657913225}
-  - {fileID: 242977718}
-  - {fileID: 1065213726}
-  - {fileID: 699663093}
-  - {fileID: 13756098}
-  - {fileID: 49037268}
-  - {fileID: 1429603418}
-  - {fileID: 1650926198}
-  - {fileID: 466813332}
-  - {fileID: 468290692}
   - {fileID: 176667708}
+  - {fileID: 49037268}
+  - {fileID: 13756098}
+  - {fileID: 5090014765140524308}
   - {fileID: 1868744181}
   - {fileID: 1675394265}
-  - {fileID: 5090014765140524308}
-  - {fileID: 1669060898}
-  - {fileID: 981702061}
+  - {fileID: 1650926198}
+  - {fileID: 1429603418}
+  - {fileID: 1065213726}
   - {fileID: 869644752}
+  - {fileID: 699663093}
+  - {fileID: 468290692}
+  - {fileID: 466813332}
+  - {fileID: 242977718}
+  - {fileID: 28332480}
+  - {fileID: 74192951}
+  - {fileID: 85365789}
+  - {fileID: 416556435}
+  - {fileID: 431244640}
+  - {fileID: 519420032}
+  - {fileID: 619394802}
+  - {fileID: 657913225}
+  - {fileID: 981702061}
+  - {fileID: 1049627468}
+  - {fileID: 2768052519870038548}
+  - {fileID: 1532210704}
+  - {fileID: 1598466006}
+  - {fileID: 1669060898}
+  - {fileID: 1772944214}
+  - {fileID: 1895562140}
+  - {fileID: 2011000002}

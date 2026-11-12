@@ -26,14 +26,19 @@ public class InimigoGangueFase1 : MonoBehaviour
     [Header("Pausa na Cobertura")]
     public float tempoParadoEmCadaPonto = 2f;
 
+    [Header("Combate")]
+    public float vidaMaxima = 125f;
+
     private Rigidbody2D rb;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
     private Vector2 posicaoAnterior;
 
     private Transform destinoPatrulha;
     private Transform destinoVertical;
     private float tempoRestanteParado;
     private bool aguardandoNoPonto;
+    private float vidaAtual;
 
     private enum Estado
     {
@@ -48,7 +53,9 @@ public class InimigoGangueFase1 : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         posicaoAnterior = rb.position;
+        vidaAtual = vidaMaxima;
     }
 
     void Start()
@@ -83,11 +90,15 @@ public class InimigoGangueFase1 : MonoBehaviour
 
     void AtualizarAnimacao()
     {
-        if (animator == null)
-            return;
+        Vector2 deslocamento = rb.position - posicaoAnterior;
+        bool estaSeMovendo = deslocamento.sqrMagnitude > 0.000001f;
 
-        bool estaSeMovendo = (rb.position - posicaoAnterior).sqrMagnitude > 0.000001f;
-        animator.SetBool("Movendo", estaSeMovendo);
+        if (spriteRenderer != null && Mathf.Abs(deslocamento.x) > 0.001f)
+            spriteRenderer.flipX = deslocamento.x < 0f;
+
+        if (animator != null)
+            animator.SetBool("Movendo", estaSeMovendo);
+
         posicaoAnterior = rb.position;
     }
 
@@ -176,5 +187,15 @@ public class InimigoGangueFase1 : MonoBehaviour
             aguardandoNoPonto = true;
             tempoRestanteParado = Mathf.Max(0f, tempoParadoEmCadaPonto);
         }
+    }
+
+    public void ReceberDano(float dano)
+    {
+        if (vidaAtual <= 0f)
+            return;
+
+        vidaAtual = Mathf.Max(0f, vidaAtual - Mathf.Max(0f, dano));
+        if (vidaAtual <= 0f)
+            Destroy(gameObject);
     }
 }
