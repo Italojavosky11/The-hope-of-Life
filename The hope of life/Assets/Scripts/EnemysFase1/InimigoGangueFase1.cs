@@ -33,6 +33,7 @@ public class InimigoGangueFase1 : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Vector2 posicaoAnterior;
+    private string estadoAnimacaoDirecional;
 
     private Transform destinoPatrulha;
     private Transform destinoVertical;
@@ -97,9 +98,49 @@ public class InimigoGangueFase1 : MonoBehaviour
             spriteRenderer.flipX = deslocamento.x < 0f;
 
         if (animator != null)
+        {
             animator.SetBool("Movendo", estaSeMovendo);
 
+            string estadoCima = ObterEstadoVertical(true);
+            string estadoBaixo = ObterEstadoVertical(false);
+
+            if (Mathf.Abs(deslocamento.y) > 0.001f)
+            {
+                string estadoDesejado = deslocamento.y > 0f ? estadoCima : estadoBaixo;
+                if (!string.IsNullOrEmpty(estadoDesejado) && estadoAnimacaoDirecional != estadoDesejado)
+                {
+                    animator.Play(estadoDesejado, 0, 0f);
+                    estadoAnimacaoDirecional = estadoDesejado;
+                }
+            }
+            else if (estaSeMovendo && !string.IsNullOrEmpty(estadoAnimacaoDirecional))
+            {
+                animator.Play("Base Layer.Walk", 0, 0f);
+                estadoAnimacaoDirecional = null;
+            }
+            else if (!estaSeMovendo && !string.IsNullOrEmpty(estadoAnimacaoDirecional))
+            {
+                animator.Play("Base Layer.Parado atirando", 0, 0f);
+                estadoAnimacaoDirecional = null;
+            }
+        }
+
         posicaoAnterior = rb.position;
+    }
+
+    string ObterEstadoVertical(bool paraCima)
+    {
+        if (animator == null || animator.runtimeAnimatorController == null)
+            return null;
+
+        bool capanga2 = animator.runtimeAnimatorController.name == "Gangue1 Capanga2";
+        if (capanga2)
+            return paraCima ? "Base Layer.g1Capanga2 - walk Costa" : "Base Layer.g1Capanga2 - walk frente";
+
+        if (animator.runtimeAnimatorController.name == "Gangue1")
+            return paraCima ? "Base Layer.g1Capanga1- walk Costa" : "Base Layer.g1Capanga1- walk frente";
+
+        return null;
     }
 
     void Patrulhar()

@@ -33,6 +33,17 @@ public class AtaqueG2 : MonoBehaviour
         if (animatorCapanga == null || inimigo == null || inimigo.jogador == null)
             return;
 
+        if (inimigo.EstaPerseguindoJogadorComPoucaVida)
+        {
+            if (Time.time >= proximoDisparo)
+            {
+                TentarAtirar(inimigo.jogador);
+                proximoDisparo = Time.time + Mathf.Max(0.05f, intervaloEntreDisparos);
+            }
+
+            return;
+        }
+
         AnimatorStateInfo estado = animatorCapanga.GetCurrentAnimatorStateInfo(0);
         bool estaAtirando = !animatorCapanga.IsInTransition(0) &&
                             estado.fullPathHash == estadoParadoAtirando;
