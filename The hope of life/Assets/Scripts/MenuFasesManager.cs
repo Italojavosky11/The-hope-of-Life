@@ -28,7 +28,7 @@ public class MenuFasesManager : MonoBehaviour
     {
         if (fase <= ObterFaseMaximaDesbloqueada())
         {
-            string nomeCena = "Level" + fase;
+            string nomeCena = fase == 1 ? "Cutscene" : "Level" + fase;
             if (Application.CanStreamedLevelBeLoaded(nomeCena))
                 SceneManager.LoadScene(nomeCena);
             else
