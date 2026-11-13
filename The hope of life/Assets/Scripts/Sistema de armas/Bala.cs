@@ -101,6 +101,14 @@ public class Bala : MonoBehaviour
             return;
         }
 
+        InimigoGangue3 gangue3 = other.GetComponentInParent<InimigoGangue3>();
+        if (gangue3 != null)
+        {
+            gangue3.ReceberDano(damage);
+            Destroy(gameObject);
+            return;
+        }
+
         // Barril de �gua
         BarrilDeAgua barril = other.GetComponentInParent<BarrilDeAgua>();
         if (barril != null)
