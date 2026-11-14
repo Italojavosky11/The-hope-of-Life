@@ -118,7 +118,7 @@ public class InimigoGangue3 : MonoBehaviour
         foreach (InimigoGangue3 membro in membros)
             if (membro != null && membro.isActiveAndEnabled && membro.detectandoJogador &&
                 membro.jogador == jogador) grupo.Add(membro);
-        grupo.Sort((a, b) => a.GetInstanceID().CompareTo(b.GetInstanceID()));
+        grupo.Sort((a, b) => a.GetEntityId().CompareTo(b.GetEntityId()));
 
         int indice = grupo.IndexOf(this);
         if (indice < 0) return;
