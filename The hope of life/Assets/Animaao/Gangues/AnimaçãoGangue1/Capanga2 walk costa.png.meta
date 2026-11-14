@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 2d1c1f739708fae4283ac4ba1e1cb7cd
+guid: 7cd416421e578bf4887b25c7c3e90ae0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1518933228439542210
-    second: Capanga2-walk-costas_0
+      213: -8993747360530622285
+    second: Capanga1-walk-costas_0
   - first:
-      213: 3878740994229275112
-    second: Capanga2-walk-costas_1
+      213: -175173191296122987
+    second: Capanga1-walk-costas_1
   - first:
-      213: -3809797391017745631
-    second: Capanga2-walk-costas_2
+      213: 546377059867786229
+    second: Capanga1-walk-costas_2
   - first:
-      213: -4581096321628563013
-    second: Capanga2-walk-costas_3
+      213: -2974281404237471496
+    second: Capanga1-walk-costas_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,7 +109,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Capanga2-walk-costas_0
+      name: Capanga1-walk-costas_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2c91dae39b5541510800000000000000
-      internalID: 1518933228439542210
+      spriteID: 3b817ff2d6acf2380800000000000000
+      internalID: -8993747360530622285
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Capanga2-walk-costas_1
+      name: Capanga1-walk-costas_1
       rect:
         serializedVersion: 2
         x: 32
@@ -146,14 +146,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8e908c0426e04d530800000000000000
-      internalID: 3878740994229275112
+      spriteID: 59f7f9e19e8a19df0800000000000000
+      internalID: -175173191296122987
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Capanga2-walk-costas_2
+      name: Capanga1-walk-costas_2
       rect:
         serializedVersion: 2
         x: 64
@@ -168,14 +168,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1236d224571e02bc0800000000000000
-      internalID: -3809797391017745631
+      spriteID: 5fb77d68a0f159700800000000000000
+      internalID: 546377059867786229
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Capanga2-walk-costas_3
+      name: Capanga1-walk-costas_3
       rect:
         serializedVersion: 2
         x: 96
@@ -190,8 +190,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bb91b7bca2dac60c0800000000000000
-      internalID: -4581096321628563013
+      spriteID: 8f0206e32da39b6d0800000000000000
+      internalID: -2974281404237471496
       vertices: []
       indices: 
       edges: []
@@ -200,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 291b78922f9939f4da2c9911eec91457
+    spriteID: b5f04b0e32d5a1845b8dbb572c029722
     internalID: 0
     vertices: []
     indices: 
@@ -212,10 +212,10 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Capanga2-walk-costas_0: 1518933228439542210
-      Capanga2-walk-costas_1: 3878740994229275112
-      Capanga2-walk-costas_2: -3809797391017745631
-      Capanga2-walk-costas_3: -4581096321628563013
+      Capanga1-walk-costas_0: -8993747360530622285
+      Capanga1-walk-costas_1: -175173191296122987
+      Capanga1-walk-costas_2: 546377059867786229
+      Capanga1-walk-costas_3: -2974281404237471496
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
