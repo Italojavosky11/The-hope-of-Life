@@ -21,6 +21,11 @@ public class InimigoGangue3 : MonoBehaviour
     public LayerMask camadasObstaculos;
     public float raioVerificacaoObstaculo = 0.25f;
 
+    [Header("Combate individual")]
+    public float velocidadeMovimentoIndividual = 1.5f;
+    public float distanciaMovimentoVertical = 1f;
+    public float tempoParadoEmCadaPonto = 2f;
+
     [Header("Combate")]
     public float vidaMaxima = 125f;
 
@@ -32,18 +37,41 @@ public class InimigoGangue3 : MonoBehaviour
     private Vector2 posicaoAnterior;
     private string estadoAnimacaoAtual;
     private float vidaAtual;
+    private float tempoParado;
+    private float tempoFinalAnimacaoTiro;
+    private float ladoCombate = 1f;
+    private bool aguardandoNoPonto;
+    private bool pontoSuperior;
     private bool detectandoJogador;
     private bool jogadorMorto;
-    private enum Estado { Patrulhando, Cercando }
+    private enum Estado { Patrulhando, CombateIndividual, Cercando }
     private Estado estadoAtual = Estado.Patrulhando;
 
     public bool EstaCercando => estadoAtual == Estado.Cercando;
+    public bool PodeAtacar => estadoAtual == Estado.Cercando || estadoAtual == Estado.CombateIndividual;
+
+    public void RegistrarDisparo()
+    {
+        if (animator == null || jogador == null || !PodeAtacar) return;
+
+        string estado = jogador.position.y < rb.position.y
+            ? "Base Layer.g3Capanga - Idle atirando frente"
+            : "Base Layer.g3Capanga - idle atirando costa";
+        animator.Play(estado, 0, 0f);
+        estadoAnimacaoAtual = estado;
+        tempoFinalAnimacaoTiro = Time.time + 1f;
+    }
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        if (jogador == null)
+        {
+            GameObject objetoJogador = GameObject.FindGameObjectWithTag("Player");
+            if (objetoJogador != null) jogador = objetoJogador.transform;
+        }
         posicaoAnterior = rb.position;
         vidaAtual = vidaMaxima;
         rb.gravityScale = 0f;
@@ -80,7 +108,7 @@ public class InimigoGangue3 : MonoBehaviour
         else if (!detectandoJogador) membros.Remove(this);
 
         int participantes = ContarParticipantes();
-        bool cercoAtivo = participantes >= 2 && detectandoJogador;
+        bool cercoAtivo = participantes >= 3 && detectandoJogador;
 
         if (cercoAtivo)
         {
@@ -89,11 +117,53 @@ public class InimigoGangue3 : MonoBehaviour
         }
         else
         {
-            estadoAtual = Estado.Patrulhando;
-            Patrulhar();
+            if (detectandoJogador)
+            {
+                if (estadoAtual != Estado.CombateIndividual)
+                {
+                    ladoCombate = Mathf.Sign(rb.position.x - jogador.position.x);
+                    if (Mathf.Approximately(ladoCombate, 0f)) ladoCombate = 1f;
+                    pontoSuperior = rb.position.y >= jogador.position.y;
+                    aguardandoNoPonto = false;
+                }
+                estadoAtual = Estado.CombateIndividual;
+                MoverNoCombateIndividual();
+            }
+            else
+            {
+                estadoAtual = Estado.Patrulhando;
+                aguardandoNoPonto = false;
+                Patrulhar();
+            }
         }
 
         AtualizarAnimacao();
+    }
+
+    private void MoverNoCombateIndividual()
+    {
+        if (aguardandoNoPonto)
+        {
+            tempoParado -= Time.fixedDeltaTime;
+            if (tempoParado > 0f) return;
+            pontoSuperior = !pontoSuperior;
+            aguardandoNoPonto = false;
+        }
+
+        Vector2 alvo = (Vector2)jogador.position + new Vector2(
+            ladoCombate * distanciaDoJogador,
+            pontoSuperior ? distanciaMovimentoVertical : -distanciaMovimentoVertical
+        );
+        Vector2 novaPosicao = Vector2.MoveTowards(
+            rb.position, alvo, velocidadeMovimentoIndividual * Time.fixedDeltaTime
+        );
+        rb.MovePosition(novaPosicao);
+
+        if (Vector2.Distance(novaPosicao, alvo) <= 0.03f)
+        {
+            aguardandoNoPonto = true;
+            tempoParado = Mathf.Max(0f, tempoParadoEmCadaPonto);
+        }
     }
 
     private bool JogadorFoiDerrotado()
@@ -107,17 +177,23 @@ public class InimigoGangue3 : MonoBehaviour
     {
         int total = 0;
         foreach (InimigoGangue3 membro in membros)
-            if (membro != null && membro.isActiveAndEnabled && membro.detectandoJogador &&
-                membro.jogador == jogador && !membro.JogadorFoiDerrotado()) total++;
+            if (MembroEstaNoAlcanceDoJogador(membro)) total++;
         return total;
+    }
+
+    private bool MembroEstaNoAlcanceDoJogador(InimigoGangue3 membro)
+    {
+        return membro != null && membro.isActiveAndEnabled && membro.jogador == jogador &&
+            membro.jogador != null &&
+            Vector2.Distance(membro.rb.position, membro.jogador.position) <= membro.distanciaDeteccao &&
+            !membro.JogadorFoiDerrotado();
     }
 
     private void MoverParaPosicaoDeCerco(int total)
     {
         List<InimigoGangue3> grupo = new List<InimigoGangue3>();
         foreach (InimigoGangue3 membro in membros)
-            if (membro != null && membro.isActiveAndEnabled && membro.detectandoJogador &&
-                membro.jogador == jogador) grupo.Add(membro);
+            if (MembroEstaNoAlcanceDoJogador(membro)) grupo.Add(membro);
         grupo.Sort((a, b) => a.GetEntityId().CompareTo(b.GetEntityId()));
 
         int indice = grupo.IndexOf(this);
@@ -174,21 +250,33 @@ public class InimigoGangue3 : MonoBehaviour
             spriteRenderer.flipX = deslocamento.x < 0f;
         if (animator != null)
         {
+            if (PodeAtacar && Time.time < tempoFinalAnimacaoTiro)
+            {
+                posicaoAnterior = rb.position;
+                return;
+            }
+
             if (movendo)
             {
                 string estado = Mathf.Abs(deslocamento.y) > Mathf.Abs(deslocamento.x)
                     ? (deslocamento.y > 0 ? "Base Layer.g3Capanga costa" : "Base Layer.g3Capaga frente")
-                    : (EstaCercando ? "Base Layer.g3Capanga walk atirando" : "Base Layer.g3Capanga-Walk");
+                    : (PodeAtacar ? "Base Layer.g3Capanga walk atirando" : "Base Layer.g3Capanga-Walk");
                 if (estadoAnimacaoAtual != estado)
                 {
                     animator.Play(estado, 0, 0f);
                     estadoAnimacaoAtual = estado;
                 }
             }
-            else if (EstaCercando && estadoAnimacaoAtual != "Base Layer.g3capanga atirando")
+            else if (PodeAtacar)
             {
-                animator.Play("Base Layer.g3capanga atirando", 0, 0f);
-                estadoAnimacaoAtual = "Base Layer.g3capanga atirando";
+                string estado = jogador.position.y < rb.position.y
+                    ? "Base Layer.g3Capanga - Idle atirando frente"
+                    : "Base Layer.g3Capanga - idle atirando costa";
+                if (estadoAnimacaoAtual != estado)
+                {
+                    animator.Play(estado, 0, 0f);
+                    estadoAnimacaoAtual = estado;
+                }
             }
         }
         posicaoAnterior = rb.position;

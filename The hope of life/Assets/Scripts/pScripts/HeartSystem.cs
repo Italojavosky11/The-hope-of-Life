@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class HeartSystem : MonoBehaviour
 {
@@ -15,10 +16,23 @@ public class HeartSystem : MonoBehaviour
 
     private bool morreu = false;
     private EfeitoDano efeitoDano;
+    private Animation animacaoMorte;
+    private Animator animator;
+    private Player controladorPlayer;
+    private Rigidbody2D corpo;
+    private Collider2D colisao;
+    private static readonly int TriggerMorte = Animator.StringToHash("Morrer");
+    private static readonly int EstadoMorte = Animator.StringToHash("Base Layer.Morte");
+    [SerializeField] private AnimationClip clipMorte;
 
     void Awake()
     {
         efeitoDano = GetComponent<EfeitoDano>();
+        animacaoMorte = GetComponent<Animation>();
+        animator = GetComponent<Animator>();
+        controladorPlayer = player != null ? player : GetComponent<Player>();
+        corpo = GetComponent<Rigidbody2D>();
+        colisao = GetComponent<Collider2D>();
     }
 
     void Start()
@@ -75,10 +89,47 @@ public class HeartSystem : MonoBehaviour
         {
             morreu = true;
 
-            player.enabled = false;
-
-            Invoke(nameof(Respawn), 2f);
+            if (controladorPlayer != null)
+            {
+                controladorPlayer.enabled = false;
+                controladorPlayer.podeMover = false;
+            }
+            if (corpo != null)
+            {
+                corpo.linearVelocity = Vector2.zero;
+                corpo.simulated = false;
+            }
+            if (colisao != null) colisao.enabled = false;
+            if (animator != null)
+            {
+                animator.ResetTrigger(TriggerMorte);
+                animator.SetTrigger(TriggerMorte);
+            }
+            StartCoroutine(AguardarFimAnimacaoMorte());
         }
+    }
+
+    private IEnumerator AguardarFimAnimacaoMorte()
+    {
+        float duracaoMaxima = (clipMorte != null ? clipMorte.length : 1.04f) + 1f;
+        float tempo = 0f;
+        while (tempo < duracaoMaxima)
+        {
+            yield return null;
+            tempo += Time.deltaTime;
+
+            if (animator == null || !animator.enabled)
+                continue;
+
+            AnimatorStateInfo estado = animator.GetCurrentAnimatorStateInfo(0);
+            if (estado.fullPathHash != EstadoMorte)
+                continue;
+
+            if (estado.normalizedTime >= 1f)
+                break;
+        }
+
+        Respawn();
     }
 
     void Respawn()
@@ -88,11 +139,27 @@ public class HeartSystem : MonoBehaviour
             CheckpointManager.Instance.Respawn(gameObject);
         }
 
-        vida = Mathf.Clamp(vida, 0, vidaMaxima);
+        vida = vidaMaxima;
+        if (animacaoMorte != null) animacaoMorte.Stop();
+        if (animator != null)
+        {
+            animator.enabled = true;
+            animator.Rebind();
+            animator.Update(0f);
+        }
+        if (corpo != null)
+        {
+            corpo.simulated = true;
+            corpo.linearVelocity = Vector2.zero;
+        }
+        if (colisao != null) colisao.enabled = true;
+        if (controladorPlayer != null)
+        {
+            controladorPlayer.podeMover = true;
+            controladorPlayer.enabled = true;
+        }
 
         morreu = false;
-
-        player.enabled = true;
 
         LogicaCoracao();
     }
@@ -100,6 +167,7 @@ public class HeartSystem : MonoBehaviour
     public void RestaurarVida(float vidaSalva)
     {
         vida = Mathf.Clamp(vidaSalva, 0f, vidaMaxima);
+        morreu = false;
         LogicaCoracao();
     }
 }

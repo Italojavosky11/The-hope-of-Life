@@ -5,6 +5,7 @@ public class CheckpointManager : MonoBehaviour
     public static CheckpointManager Instance;
 
     private Vector3 checkpointPosition;
+    private Vector3 inicioFase;
     private bool possuiCheckpoint = false;
 
     private void Awake()
@@ -12,6 +13,9 @@ public class CheckpointManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+                inicioFase = player.transform.position;
         }
         else
         {
@@ -27,12 +31,7 @@ public class CheckpointManager : MonoBehaviour
 
     public void Respawn(GameObject player)
     {
-        if (!possuiCheckpoint)
-        {
-            return;
-        }
-
-        player.transform.position = checkpointPosition;
+        player.transform.position = possuiCheckpoint ? checkpointPosition : inicioFase;
 
         HeartSystem heartSystem = player.GetComponent<HeartSystem>();
         SedeSystem sedeSystem = FindFirstObjectByType<SedeSystem>();

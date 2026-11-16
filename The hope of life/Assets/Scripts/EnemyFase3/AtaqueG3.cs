@@ -22,7 +22,7 @@ public class AtaqueG3 : MonoBehaviour
 
     void Update()
     {
-        if (inimigo == null || !inimigo.EstaCercando || inimigo.jogador == null ||
+        if (inimigo == null || !inimigo.PodeAtacar || inimigo.jogador == null ||
             Time.time < proximoDisparo) return;
 
         TentarAtirar(inimigo.jogador);
@@ -49,6 +49,7 @@ public class AtaqueG3 : MonoBehaviour
         Bala bala = objetoBala.GetComponent<Bala>();
         if (bala == null) { Destroy(objetoBala); return; }
         bala.ConfigurarParaInimigo(spriteBala, danoJogador, velocidadeBala, duracaoBala);
+        inimigo.RegistrarDisparo();
 
         SpriteRenderer spriteProjetil = objetoBala.GetComponent<SpriteRenderer>();
         if (spriteProjetil != null && spriteCapanga != null)
