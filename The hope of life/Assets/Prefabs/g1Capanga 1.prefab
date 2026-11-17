@@ -226,3 +226,5 @@ MonoBehaviour:
   duracaoBala: 4
   intervaloEntreDisparos: 1.5
   deslocamentoSaida: {x: 0.55, y: 0.1}
+  deslocamentoSaidaCima: {x: 0.12, y: 0.3}
+  deslocamentoSaidaBaixo: {x: 0.12, y: -0.2}

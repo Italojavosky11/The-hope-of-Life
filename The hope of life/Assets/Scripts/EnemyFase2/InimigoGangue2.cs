@@ -39,6 +39,7 @@ public class InimigoGangue2 : MonoBehaviour
     private Vector2 posicaoAnterior;
     private string estadoAnimacaoDirecional;
     private HeartSystem coracoesJogador;
+    private AtaqueG2 ataqueG2;
 
     private Transform destinoPatrulha;
     private Transform destinoVertical;
@@ -69,6 +70,7 @@ public class InimigoGangue2 : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        ataqueG2 = GetComponent<AtaqueG2>();
         posicaoAnterior = rb.position;
         vidaAtual = vidaMaxima;
         if (jogador != null)
@@ -117,6 +119,11 @@ public class InimigoGangue2 : MonoBehaviour
 
     void AtualizarAnimacao()
     {
+        if (ataqueG2 != null && ataqueG2.AnimacaoDeDisparoAtiva)
+        {
+            posicaoAnterior = rb.position;
+            return;
+        }
         Vector2 deslocamento = rb.position - posicaoAnterior;
         bool estaSeMovendo = deslocamento.sqrMagnitude > 0.000001f;
 
