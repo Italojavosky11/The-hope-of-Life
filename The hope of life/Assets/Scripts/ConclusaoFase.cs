@@ -12,9 +12,10 @@ public class ConclusaoFase : MonoBehaviour
         concluida = true;
         MenuFasesManager.RegistrarConclusaoDaFase(faseConcluida);
         string proximaCena = "Level" + (faseConcluida + 1);
-        if (faseConcluida < 3 && Application.CanStreamedLevelBeLoaded(proximaCena))
-            SceneManager.LoadScene(proximaCena);
-        else
-            SceneManager.LoadScene("MenuFases");
+        string cenaDestino = faseConcluida < 3 && Application.CanStreamedLevelBeLoaded(proximaCena)
+            ? proximaCena
+            : "MenuFases";
+
+        TransicaoFases.Iniciar(cenaDestino);
     }
 }

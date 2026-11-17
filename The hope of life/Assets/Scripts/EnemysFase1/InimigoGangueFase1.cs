@@ -37,6 +37,8 @@ public class InimigoGangueFase1 : MonoBehaviour
 
     private Transform destinoPatrulha;
     private Transform destinoVertical;
+    private Transform pontoRetornoPatrulha;
+    private Vector2 posicaoRetornoPatrulha;
     private float tempoRestanteParado;
     private bool aguardandoNoPonto;
     private float vidaAtual;
@@ -45,7 +47,8 @@ public class InimigoGangueFase1 : MonoBehaviour
     {
         Patrulhando,
         IndoParaCobertura,
-        EmCombate
+        EmCombate,
+        RetornandoParaPatrulha
     }
 
     private Estado estadoAtual = Estado.Patrulhando;
@@ -70,6 +73,7 @@ public class InimigoGangueFase1 : MonoBehaviour
 
     void FixedUpdate()
     {
+        VerificarSaidaDoRaioDeDeteccao();
         switch (estadoAtual)
         {
             case Estado.Patrulhando:
@@ -83,6 +87,10 @@ public class InimigoGangueFase1 : MonoBehaviour
 
             case Estado.EmCombate:
                 MovimentarNaCobertura();
+                break;
+
+            case Estado.RetornandoParaPatrulha:
+                RetornarParaPatrulha();
                 break;
         }
 
@@ -180,6 +188,48 @@ public class InimigoGangueFase1 : MonoBehaviour
         }
     }
 
+    void VerificarSaidaDoRaioDeDeteccao()
+    {
+        if (jogador == null || estadoAtual == Estado.Patrulhando || estadoAtual == Estado.RetornandoParaPatrulha)
+            return;
+
+        if (Vector2.Distance(rb.position, jogador.position) <= distanciaDeteccao)
+            return;
+
+        pontoRetornoPatrulha = ObterPontoPatrulhaMaisProximo();
+        posicaoRetornoPatrulha = pontoRetornoPatrulha != null
+            ? (Vector2)pontoRetornoPatrulha.position
+            : rb.position;
+        estadoAtual = Estado.RetornandoParaPatrulha;
+    }
+
+    Transform ObterPontoPatrulhaMaisProximo()
+    {
+        if (pontoInicial == null)
+            return pontoFinal;
+        if (pontoFinal == null)
+            return pontoInicial;
+
+        float distanciaInicial = Vector2.Distance(rb.position, pontoInicial.position);
+        float distanciaFinal = Vector2.Distance(rb.position, pontoFinal.position);
+        return distanciaInicial <= distanciaFinal ? pontoInicial : pontoFinal;
+    }
+
+    void RetornarParaPatrulha()
+    {
+        Vector2 novaPosicao = Vector2.MoveTowards(
+            rb.position,
+            posicaoRetornoPatrulha,
+            velocidadePatrulha * Time.fixedDeltaTime
+        );
+        rb.MovePosition(novaPosicao);
+
+        if (Vector2.Distance(novaPosicao, posicaoRetornoPatrulha) > 0.01f)
+            return;
+
+        destinoPatrulha = pontoRetornoPatrulha == pontoInicial ? pontoFinal : pontoInicial;
+        estadoAtual = Estado.Patrulhando;
+    }
     void IrParaCobertura()
     {
         Vector2 novaPosicao = Vector2.MoveTowards(

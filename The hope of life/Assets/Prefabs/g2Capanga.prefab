@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AtaqueG2
   prefabBala: {fileID: 5326405770366764487, guid: 3e894502bc78f3f469016acff90323fb, type: 3}
-  spriteBala: {fileID: 21300000, guid: b068a62afa2ed5b45bb032e06cc673c5, type: 3}
+  spriteBala: {fileID: 21300000, guid: 200c04bc5acac4840ade2ab5d2e387b1, type: 3}
   danoJogador: 1
   velocidadeBala: 8
   duracaoBala: 4
