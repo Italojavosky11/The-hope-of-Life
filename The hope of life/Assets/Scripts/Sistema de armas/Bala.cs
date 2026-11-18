@@ -110,6 +110,14 @@ public class Bala : MonoBehaviour
         }
 
         
+        JohnKentBoss johnKent = other.GetComponentInParent<JohnKentBoss>();
+        if (johnKent != null)
+        {
+            johnKent.ReceiveDamage(damage);
+            Destroy(gameObject);
+            return;
+        }
+
         BarrilDeAgua barril = other.GetComponentInParent<BarrilDeAgua>();
         if (barril != null)
         {

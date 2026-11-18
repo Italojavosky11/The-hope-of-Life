@@ -661,6 +661,7 @@ GameObject:
   - component: {fileID: 159455187}
   - component: {fileID: 159455186}
   - component: {fileID: 159455185}
+  - component: {fileID: 159455190}
   m_Layer: 0
   m_Name: John Kent
   m_TagString: Untagged
@@ -823,12 +824,82 @@ Transform:
   m_GameObject: {fileID: 159455184}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -47.76783, y: -8.939234, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -47.01783, y: -8.689234, z: 0}
+  m_LocalScale: {x: 1.75, y: 1.75, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1290186567}
+  - {fileID: 1385811852}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &159455190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159455184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c592277c47f44874da8cf089c24ddabf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JohnKentBoss
+  maxHealth: 150
+  phase2Threshold: 0.65
+  phase3Threshold: 0.3
+  player: {fileID: 1722585155}
+  movementSpeed: 2.5
+  phase2AdvanceSpeed: 3
+  phase3ChaseSpeed: 3.5
+  preferredDistance: 5
+  minimumDistance: 2.5
+  maximumDistance: 7
+  dodgeDuration: 0.45
+  dodgeSpeed: 5
+  advanceDuration: 1.6
+  wallSkin: 0.02
+  projectilePrefab: {fileID: 5326405770366764487, guid: 3e894502bc78f3f469016acff90323fb, type: 3}
+  projectileSprite: {fileID: 21300000, guid: 8a9bd219240e1a74eb0a595359a971ad, type: 3}
+  projectileLifetime: 4
+  playerDamage: 1
+  phase1AttackInterval: 1.2
+  phase2AttackInterval: 0.8
+  phase3AttackInterval: 0.55
+  specialWarningTime: 1.1
+  specialDamage: 4
+  specialProjectileSpeed: 11
+  specialInterval: 7
+  fanProjectileCount: 5
+  fanAngle: 60
+  bulletRainCount: 12
+  shotEventTime: 0.333
+  shotRecoveryTime: 0.4
+  shotAnimationTimeout: 1.2
+  movementAnimationThreshold: 0.01
+  rightWeapon:
+    weaponName: Right
+    firePoint: {fileID: 1290186567}
+    damage: 1.5
+    projectileSpeed: 9
+    fireInterval: 0.7
+    reloadTime: 1.8
+    magazineSize: 6
+    ammunition: 0
+    nextShotTime: 0
+    reloading: 0
+    reloadCompleteTime: 0
+  leftWeapon:
+    weaponName: Left
+    firePoint: {fileID: 1385811852}
+    damage: 0.8
+    projectileSpeed: 8.5
+    fireInterval: 0.35
+    reloadTime: 1.3
+    magazineSize: 10
+    ammunition: 0
+    nextShotTime: 0
+    reloading: 0
+    reloadCompleteTime: 0
 --- !u!1 &280122420
 GameObject:
   m_ObjectHideFlags: 0
@@ -28212,7 +28283,7 @@ Transform:
   m_GameObject: {fileID: 431244636}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.487298, y: 51.387604, z: -10}
+  m_LocalPosition: {x: -52.262703, y: -5.3623962, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -28370,7 +28441,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.499505, y: 51.870255, z: -10}
+  m_LocalPosition: {x: -52.262703, y: -5.3623962, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30561,6 +30632,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1243223693}
   m_CullTransparentMesh: 1
+--- !u!1 &1290186566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1290186567}
+  m_Layer: 0
+  m_Name: RightFirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1290186567
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290186566}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.22, y: 0.017142862, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 159455189}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1292091211
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30882,6 +30984,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352269102}
   m_CullTransparentMesh: 1
+--- !u!1 &1385811851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1385811852}
+  m_Layer: 0
+  m_Name: LeftFirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1385811852
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385811851}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.22, y: -0.08, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 159455189}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1438928942
 GameObject:
   m_ObjectHideFlags: 0
@@ -67345,11 +67478,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8966673787857682933, guid: e3ce9b2ee29805245a8dd8923a1106aa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.487298
+      value: -52.262703
       objectReference: {fileID: 0}
     - target: {fileID: 8966673787857682933, guid: e3ce9b2ee29805245a8dd8923a1106aa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 51.387604
+      value: -5.3623962
       objectReference: {fileID: 0}
     - target: {fileID: 8966673787857682933, guid: e3ce9b2ee29805245a8dd8923a1106aa, type: 3}
       propertyPath: m_LocalPosition.z

@@ -10,6 +10,16 @@ public class Arma : MonoBehaviour
     private SpriteRenderer[] spritesArma;
     private bool atacando;
 
+    private static readonly int[] estadosDeDisparo =
+    {
+        Animator.StringToHash("IdleAtirandoColt"),
+        Animator.StringToHash("IdleAtirandoRevolver"),
+        Animator.StringToHash("IdleAtirandoSpringfield"),
+        Animator.StringToHash("IdleAtirandoFrente"),
+        Animator.StringToHash("Idle Costa Atirando"),
+        Animator.StringToHash("AtirandoRevolverParado")
+    };
+
     void Awake()
     {
         animatorJogador = GetComponentInParent<Animator>();
@@ -31,8 +41,38 @@ public class Arma : MonoBehaviour
             animatorJogador.SetBool("Atacando", atacando);
         }
 
-        if (pressionandoSpace)
+        if (pressionandoSpace && AnimacaoDeDisparoAtiva())
             Atirar();
+    }
+
+    private bool AnimacaoDeDisparoAtiva()
+    {
+        if (animatorJogador == null || !animatorJogador.isInitialized)
+            return false;
+
+        for (int layer = 0; layer < animatorJogador.layerCount; layer++)
+        {
+            AnimatorStateInfo estadoAtual = animatorJogador.GetCurrentAnimatorStateInfo(layer);
+            if (EhAnimacaoDeDisparo(estadoAtual.shortNameHash))
+                return true;
+
+            if (animatorJogador.IsInTransition(layer) &&
+                EhAnimacaoDeDisparo(animatorJogador.GetNextAnimatorStateInfo(layer).shortNameHash))
+                return true;
+        }
+
+        return false;
+    }
+
+    private static bool EhAnimacaoDeDisparo(int hash)
+    {
+        for (int i = 0; i < estadosDeDisparo.Length; i++)
+        {
+            if (hash == estadosDeDisparo[i])
+                return true;
+        }
+
+        return false;
     }
 
     void Atirar()
