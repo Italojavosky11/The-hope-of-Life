@@ -16,6 +16,7 @@ public class AtaqueGangue : MonoBehaviour
     private Animator animatorCapanga;
     private InimigoGangueFase1 inimigo;
     private float proximoDisparo;
+    private bool disparoFeitoNesteAtaque;
 
     private static readonly int estadoParadoAtirando =
         Animator.StringToHash("Base Layer.Parado atirando");
@@ -58,15 +59,26 @@ public class AtaqueGangue : MonoBehaviour
 
     void LateUpdate()
     {
-        if (animatorCapanga == null || inimigo == null || inimigo.jogador == null ||
-            animatorCapanga.IsInTransition(0))
+        if (animatorCapanga == null || inimigo == null || inimigo.jogador == null)
             return;
 
         AnimatorStateInfo estadoAtual = animatorCapanga.GetCurrentAnimatorStateInfo(0);
-        if (EhEstadoDirecional(estadoAtual.fullPathHash))
-            return;
+        bool estaAtirando = !animatorCapanga.IsInTransition(0) &&
+                            EhEstadoDirecional(estadoAtual.fullPathHash);
 
-        if (estadoAtual.fullPathHash != estadoParadoAtirando || Time.time < proximoDisparo)
+        if (estaAtirando)
+        {
+            if (!disparoFeitoNesteAtaque)
+            {
+                TentarAtirar(inimigo.jogador);
+                disparoFeitoNesteAtaque = true;
+            }
+            return;
+        }
+
+        if (animatorCapanga.IsInTransition(0) ||
+            estadoAtual.fullPathHash != estadoParadoAtirando ||
+            Time.time < proximoDisparo)
             return;
 
         Vector2 direcaoAoJogador = (Vector2)inimigo.jogador.position - (Vector2)transform.position;
@@ -75,21 +87,23 @@ public class AtaqueGangue : MonoBehaviour
 
         if (direcaoAoJogador.y > 0.15f)
         {
+            disparoFeitoNesteAtaque = false;
             animatorCapanga.Play(capanga2 ? estadoCapanga2AtirandoCima : estadoCapanga1AtirandoCima, 0, 0f);
-            TentarAtirar(inimigo.jogador);
         }
         else if (direcaoAoJogador.y < -0.15f)
         {
+            disparoFeitoNesteAtaque = false;
             animatorCapanga.Play(capanga2 ? estadoCapanga2AtirandoBaixo : estadoCapanga1AtirandoBaixo, 0, 0f);
-            TentarAtirar(inimigo.jogador);
         }
         else
         {
+            disparoFeitoNesteAtaque = false;
+            animatorCapanga.Play(estadoParadoAtirando, 0, 0f);
             TentarAtirar(inimigo.jogador);
         }
+
         proximoDisparo = Time.time + Mathf.Max(0.05f, intervaloEntreDisparos);
     }
-
     private static bool EhEstadoDirecional(int estado)
     {
         return estado == estadoCapanga1AtirandoCima ||
