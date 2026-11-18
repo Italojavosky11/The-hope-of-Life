@@ -76,7 +76,7 @@ public class Bala : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        // Prioriza inimigos (cobra)
+        
         Cobra cobra = other.GetComponentInParent<Cobra>();
         if (cobra != null)
         {
@@ -109,7 +109,7 @@ public class Bala : MonoBehaviour
             return;
         }
 
-        // Barril de �gua
+        
         BarrilDeAgua barril = other.GetComponentInParent<BarrilDeAgua>();
         if (barril != null)
         {
@@ -118,7 +118,7 @@ public class Bala : MonoBehaviour
             return;
         }
 
-        // Ignora jogador, outras balas e a layer Default
+       
         if (other.CompareTag("Player"))
             return;
 
@@ -128,7 +128,7 @@ public class Bala : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Default"))
             return;
 
-        // Qualquer outro colisor destr�i a bala
+        
         Destroy(gameObject);
     }
 }

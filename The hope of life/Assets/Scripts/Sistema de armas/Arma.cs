@@ -70,12 +70,11 @@ public class Arma : MonoBehaviour
 
     Vector3 ObterPontoSaidaBala(Vector2 direcao)
     {
-        // Mantém o ponto configurado na arma para tiros laterais.
+        
         if (Mathf.Abs(direcao.x) > Mathf.Abs(direcao.y))
             return firePoint.position;
 
-        // Nos tiros verticais, usa a distância do ponto da arma ao player
-        // e move a saída para a frente na direção da animação.
+        
         float distanciaDoPlayer = Vector2.Distance(
             animatorJogador.transform.position,
             firePoint.position
