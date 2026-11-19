@@ -511,10 +511,6 @@ AnimatorStateMachine:
     m_State: {fileID: -2171068923123007847}
     m_Position: {x: 400, y: 860, z: 0}
   m_ChildStateMachines: []
-  m_ChildStates:
-  - serializedVersion: 1
-    m_State: {fileID: 8111111111111111111}
-    m_Position: {x: 650, y: 900, z: 0}
   m_AnyStateTransitions:
   - {fileID: 1029540004291634395}
   - {fileID: 2872168774701780466}
@@ -736,32 +732,6 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 00b4b28dd0a1e2041a3d22d949af1597, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &8111111111111111111
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: "jkAnima\xE7\xE3od e morte"
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ca12049c58e4d704ab787070e0812510, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

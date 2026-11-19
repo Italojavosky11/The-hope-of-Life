@@ -33,8 +33,11 @@ public static class JohnKentBossSetup
         const string clipPath = "Assets/Scenes/jkAnimaçãod e morte.anim";
         const string sheetPath = "Assets/Animaao/JohnKent/muerte del vilãofinal (1).png";
         AnimationClip clip = AssetDatabase.LoadAssetAtPath<AnimationClip>(clipPath);
-        Sprite[] sprites = System.Array.ConvertAll(AssetDatabase.LoadAllAssetsAtPath(sheetPath), asset => asset as Sprite);
-        System.Array.Sort(sprites, (a, b) => GetFrameIndex(a.name).CompareTo(GetFrameIndex(b.name)));
+        System.Collections.Generic.List<Sprite> spriteList = new System.Collections.Generic.List<Sprite>();
+        foreach (Object asset in AssetDatabase.LoadAllAssetsAtPath(sheetPath))
+            if (asset is Sprite sprite) spriteList.Add(sprite);
+        spriteList.Sort((a, b) => GetFrameIndex(a.name).CompareTo(GetFrameIndex(b.name)));
+        Sprite[] sprites = spriteList.ToArray();
         if (clip == null || sprites.Length == 0) return;
         const float frameRate = 10f;
         ObjectReferenceKeyframe[] keys = new ObjectReferenceKeyframe[sprites.Length];
