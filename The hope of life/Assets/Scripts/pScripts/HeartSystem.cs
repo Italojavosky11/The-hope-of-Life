@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class HeartSystem : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class HeartSystem : MonoBehaviour
     private static readonly int TriggerMorte = Animator.StringToHash("Morrer");
     private static readonly int EstadoMorte = Animator.StringToHash("Base Layer.Morte");
     [SerializeField] private AnimationClip clipMorte;
+    [SerializeField] private GameObject painelMorte;
+
+    private bool aguardandoReinicio;
 
     void Awake()
     {
@@ -33,6 +37,12 @@ public class HeartSystem : MonoBehaviour
         controladorPlayer = player != null ? player : GetComponent<Player>();
         corpo = GetComponent<Rigidbody2D>();
         colisao = GetComponent<Collider2D>();
+
+        if (painelMorte == null)
+            painelMorte = EncontrarPainelMorte();
+
+        if (painelMorte != null)
+            painelMorte.SetActive(false);
     }
 
     void Start()
@@ -129,7 +139,49 @@ public class HeartSystem : MonoBehaviour
                 break;
         }
 
+        bool exibirPainel = CheckpointManager.Instance == null ||
+            CheckpointManager.Instance.RegistrarMorte();
+
+        if (exibirPainel)
+        {
+            aguardandoReinicio = true;
+            if (painelMorte != null)
+                painelMorte.SetActive(true);
+            else
+                Debug.LogError("Painel de morte não configurado no HeartSystem. Arraste o painel do Level1 para o campo Painel Morte.", this);
+
+            Time.timeScale = 0f;
+            yield break;
+        }
+
         Respawn();
+    }
+
+    private GameObject EncontrarPainelMorte()
+    {
+        string[] nomesPossiveis = { "PainelDeMorte", "PanelDeMorte", "PainelMorte", "DeathPanel" };
+        GameObject[] objetos = Resources.FindObjectsOfTypeAll<GameObject>();
+
+        foreach (string nome in nomesPossiveis)
+        {
+            foreach (GameObject objeto in objetos)
+            {
+                if (objeto.name == nome && objeto.scene.IsValid())
+                    return objeto;
+            }
+        }
+
+        return null;
+    }
+
+    // Conecte este método ao botão Back do painel de morte no Inspector.
+    public void VoltarAoInicioDaFase()
+    {
+        if (!aguardandoReinicio)
+            return;
+
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     void Respawn()

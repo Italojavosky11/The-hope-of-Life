@@ -7,6 +7,9 @@ public class CheckpointManager : MonoBehaviour
     private Vector3 checkpointPosition;
     private Vector3 inicioFase;
     private bool possuiCheckpoint = false;
+    private int mortesDesdeCheckpoint;
+
+    public bool PossuiCheckpoint => possuiCheckpoint;
 
     private void Awake()
     {
@@ -27,6 +30,16 @@ public class CheckpointManager : MonoBehaviour
     {
         checkpointPosition = posicao;
         possuiCheckpoint = true;
+        mortesDesdeCheckpoint = 0;
+    }
+
+    public bool RegistrarMorte()
+    {
+        if (!possuiCheckpoint)
+            return true;
+
+        mortesDesdeCheckpoint++;
+        return mortesDesdeCheckpoint >= 3;
     }
 
     public void Respawn(GameObject player)
