@@ -7649,6 +7649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 516217d83ddd99f4ba3b802244a309f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CheckpointManager
+  armasIniciaisFase: []
 --- !u!1001 &427287719
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8085,7 +8086,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0699995, y: -0.069999814, z: -10}
+  m_LocalPosition: {x: -0.29500037, y: -0.07118, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8737,7 +8738,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -365.357, y: 180}
+  m_AnchoredPosition: {x: -365.357, y: 145}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &727367196
@@ -8858,12 +8859,12 @@ PolygonCollider2D:
       - {x: -7.932747, y: -5.059599}
       - {x: 5.968848, y: -5.113214}
       - {x: 5.7765293, y: -12.4040575}
-      - {x: 20.407352, y: -11.296569}
-      - {x: 25.589258, y: -10.723193}
-      - {x: 27.828836, y: -10.971066}
-      - {x: 27.310602, y: -14.779589}
-      - {x: 25.560602, y: -15.529589}
-      - {x: 21.94116, y: -15.4924755}
+      - {x: 12.841181, y: -11.9571085}
+      - {x: 21.145634, y: -11.924172}
+      - {x: 22.664623, y: -12.952683}
+      - {x: 22.777016, y: -13.888025}
+      - {x: 22.58174, y: -14.814243}
+      - {x: 21.580868, y: -14.651789}
       - {x: 18.393017, y: -14.545223}
       - {x: 14.393017, y: -15.045223}
       - {x: 7.4948683, y: -16.35152}
@@ -8881,9 +8882,11 @@ PolygonCollider2D:
       - {x: 12.209166, y: -23.276266}
       - {x: 26.992102, y: -23.191404}
       - {x: 32.513496, y: -23.00407}
-      - {x: 35.498512, y: -22.93552}
-      - {x: 34.814632, y: -20.25578}
-      - {x: 35.0142, y: -18.05519}
+      - {x: 34.20626, y: -22.641827}
+      - {x: 35.695713, y: -20.549473}
+      - {x: 35.7778, y: -19.582397}
+      - {x: 35.719063, y: -19.171227}
+      - {x: 36.04277, y: -18.177479}
       - {x: 36.06778, y: -17.209475}
       - {x: 38.97633, y: -13.599636}
       - {x: 40.630566, y: -13.180731}
@@ -18139,7 +18142,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -146.76544}
+  m_AnchoredPosition: {x: 0, y: -182}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1736021139
