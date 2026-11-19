@@ -238,4 +238,18 @@ public class Inventory : MonoBehaviour
             armaEquipada = null;
         }
     }
+
+    public void AtualizarAposRestaurarDesbloqueios()
+    {
+        if (armaEquipada == null)
+            return;
+
+        Arma armaAtual = armaEquipada.GetComponent<Arma>();
+        if (armaAtual != null &&
+            !GerenciadorArmas.EstaDesbloqueada(armaAtual.dataArma))
+        {
+            RemoverArmaEquipada();
+            EquiparArmaDoPrimeiroSlot();
+        }
+    }
 }

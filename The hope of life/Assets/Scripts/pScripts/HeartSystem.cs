@@ -181,6 +181,9 @@ public class HeartSystem : MonoBehaviour
             return;
 
         Time.timeScale = 1f;
+        if (CheckpointManager.Instance != null)
+            CheckpointManager.Instance.RestaurarDesbloqueiosIniciaisDaFase();
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

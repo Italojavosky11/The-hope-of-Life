@@ -23,4 +23,26 @@ public static class GerenciadorArmas
 
         armasDesbloqueadas.Add(arma);
     }
+
+    public static void Desbloquear(DataArma[] armas)
+    {
+        if (armas == null)
+            return;
+
+        foreach (DataArma arma in armas)
+            Desbloquear(arma);
+    }
+
+    public static DataArma[] CapturarDesbloqueadas()
+    {
+        DataArma[] snapshot = new DataArma[armasDesbloqueadas.Count];
+        armasDesbloqueadas.CopyTo(snapshot);
+        return snapshot;
+    }
+
+    public static void RestaurarDesbloqueadas(DataArma[] snapshot)
+    {
+        armasDesbloqueadas.Clear();
+        Desbloquear(snapshot);
+    }
 }

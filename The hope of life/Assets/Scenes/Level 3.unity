@@ -29175,6 +29175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 516217d83ddd99f4ba3b802244a309f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CheckpointManager
+  armasIniciaisFase:
+  - {fileID: 11400000, guid: 8892c39adea74a74ba449e66e5f9d6a3, type: 2}
 --- !u!1001 &424950099
 PrefabInstance:
   m_ObjectHideFlags: 0
