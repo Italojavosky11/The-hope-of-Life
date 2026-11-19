@@ -34,12 +34,9 @@ public class Arma : MonoBehaviour
             Input.GetKey(KeyCode.Space) &&
             animatorJogador != null;
 
-        if (atacando != pressionandoSpace)
-        {
-            atacando = pressionandoSpace;
-
+        atacando = pressionandoSpace;
+        if (animatorJogador.GetBool("Atacando") != atacando)
             animatorJogador.SetBool("Atacando", atacando);
-        }
 
         if (pressionandoSpace && AnimacaoDeDisparoAtiva())
             Atirar();

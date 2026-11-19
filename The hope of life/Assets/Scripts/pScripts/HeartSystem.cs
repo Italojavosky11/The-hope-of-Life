@@ -146,6 +146,10 @@ public class HeartSystem : MonoBehaviour
             animator.enabled = true;
             animator.Rebind();
             animator.Update(0f);
+            animator.ResetTrigger(TriggerMorte);
+            animator.SetBool("Atacando", false);
+            animator.SetFloat("speed", 0f);
+            animator.SetInteger("Direcao", 0);
         }
         if (corpo != null)
         {
@@ -155,6 +159,7 @@ public class HeartSystem : MonoBehaviour
         if (colisao != null) colisao.enabled = true;
         if (controladorPlayer != null)
         {
+            controladorPlayer.RestaurarEstadoAposRespawn();
             controladorPlayer.podeMover = true;
             controladorPlayer.enabled = true;
         }

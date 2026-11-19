@@ -16,6 +16,7 @@ public static class JohnKentBossSetup
     {
         AnimatorController controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(ControllerPath);
         if (controller == null) { EditorUtility.DisplayDialog("John Kent", "Animator Controller not found.", "OK"); return; }
+        ConfigureDeathClip();
         ConfigureController(controller);
         Scene scene = SceneManager.GetActiveScene();
         if (scene.path != ScenePath) scene = EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Single);
@@ -27,6 +28,31 @@ public static class JohnKentBossSetup
         AssetDatabase.SaveAssets();
     }
 
+    private static void ConfigureDeathClip()
+    {
+        const string clipPath = "Assets/Scenes/jkAnimaçãod e morte.anim";
+        const string sheetPath = "Assets/Animaao/JohnKent/muerte del vilãofinal (1).png";
+        AnimationClip clip = AssetDatabase.LoadAssetAtPath<AnimationClip>(clipPath);
+        Sprite[] sprites = System.Array.ConvertAll(AssetDatabase.LoadAllAssetsAtPath(sheetPath), asset => asset as Sprite);
+        System.Array.Sort(sprites, (a, b) => GetFrameIndex(a.name).CompareTo(GetFrameIndex(b.name)));
+        if (clip == null || sprites.Length == 0) return;
+        const float frameRate = 10f;
+        ObjectReferenceKeyframe[] keys = new ObjectReferenceKeyframe[sprites.Length];
+        for (int i = 0; i < sprites.Length; i++) keys[i] = new ObjectReferenceKeyframe { time = i / frameRate, value = sprites[i] };
+        clip.frameRate = frameRate;
+        AnimationUtility.SetObjectReferenceCurve(clip, EditorCurveBinding.PPtrCurve(string.Empty, typeof(SpriteRenderer), "m_Sprite"), keys);
+        AnimationClipSettings settings = AnimationUtility.GetAnimationClipSettings(clip);
+        settings.loopTime = false;
+        settings.stopTime = sprites.Length / frameRate;
+        AnimationUtility.SetAnimationClipSettings(clip, settings);
+        EditorUtility.SetDirty(clip);
+    }
+
+    private static int GetFrameIndex(string spriteName)
+    {
+        int separator = spriteName.LastIndexOf('_');
+        return separator >= 0 && int.TryParse(spriteName.Substring(separator + 1), out int index) ? index : 0;
+    }
     private static void ConfigureController(AnimatorController controller)
     {
         controller.parameters = new[] { new AnimatorControllerParameter { name = "Animacao", type = AnimatorControllerParameterType.Int } };
@@ -44,6 +70,8 @@ public static class JohnKentBossSetup
             states[i].writeDefaultValues = true;
         }
         sm.defaultState = states[9];
+        AnimationClip deathClip = AssetDatabase.LoadAssetAtPath<AnimationClip>("Assets/Scenes/jkAnimaçãod e morte.anim");
+        if (deathClip != null) sm.AddState(deathClip.name, new Vector3(650, 900)).motion = deathClip;
         for (int i = 0; i < states.Length; i++)
         {
             AnimatorStateTransition transition = sm.AddAnyStateTransition(states[i]);

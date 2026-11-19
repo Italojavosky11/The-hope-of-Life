@@ -21,6 +21,21 @@ public class Player : MonoBehaviour
             animator = GetComponent<Animator>();
     }
 
+    public void RestaurarEstadoAposRespawn()
+    {
+        movement = Vector2.zero;
+        kBCount = 0f;
+        isKnockRight = false;
+        podeMover = true;
+        if (rb != null)
+            rb.linearVelocity = Vector2.zero;
+        if (animator != null)
+        {
+            animator.SetBool("Atacando", false);
+            animator.SetFloat("speed", 0f);
+            animator.SetInteger("Direcao", 0);
+        }
+    }
     void Update()
     {
         if (!podeMover)
