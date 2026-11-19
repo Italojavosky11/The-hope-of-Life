@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
 public sealed class JohnKentBoss : MonoBehaviour
@@ -37,6 +38,7 @@ public sealed class JohnKentBoss : MonoBehaviour
     [Header("Dificuldade dos disparos")]
     [Min(0.05f)] public float initialFireInterval = 0.65f;
     [Min(0.05f)] public float minimumFireInterval = 0.12f;
+    [Min(0f)] public float attackRange = 8f;
     public GameObject projectilePrefab;
     public Sprite projectileSprite;
     public float projectileLifetime = 4f;
@@ -71,6 +73,7 @@ public sealed class JohnKentBoss : MonoBehaviour
     private bool pendingShot;
     private bool shotDispatched;
     private bool dead;
+    private bool finalCutsceneStarted;
     private float movementSpeed;
     private float difficultyProgress;
     private float intervalMultiplier = 1f;
@@ -96,7 +99,11 @@ public sealed class JohnKentBoss : MonoBehaviour
 
     private void Update()
     {
-        if (dead) return;
+        if (dead)
+        {
+            CheckDeathAnimation();
+            return;
+        }
         FindPlayer();
         UpdateDifficulty();
         UpdateReload(rightWeapon);
@@ -187,7 +194,14 @@ public sealed class JohnKentBoss : MonoBehaviour
 
     private void UpdateFire()
     {
-        if (player == null || projectilePrefab == null) return;
+        if (player == null || projectilePrefab == null || !IsPlayerInAttackRange())
+        {
+            pendingShot = false;
+            pendingWeapon = null;
+            pendingAnimation = -1;
+            shotDispatched = false;
+            return;
+        }
         if (pendingShot)
         {
             ResolvePendingShot();
@@ -207,6 +221,12 @@ public sealed class JohnKentBoss : MonoBehaviour
         shotStarted = Time.time;
         shotDispatched = false;
         pendingShot = true;
+    }
+
+    private bool IsPlayerInAttackRange()
+    {
+        float range = Mathf.Max(0f, attackRange);
+        return ((Vector2)player.position - body.position).sqrMagnitude <= range * range;
     }
 
     private void ResolvePendingShot()
@@ -348,7 +368,19 @@ public sealed class JohnKentBoss : MonoBehaviour
             animator.Play(DeathStateHash, 0, 0f);
             animator.Update(0f);
         }
-        enabled = false;
+    }
+
+    private void CheckDeathAnimation()
+    {
+        if (finalCutsceneStarted || animator == null || !animator.isActiveAndEnabled)
+            return;
+
+        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+        if (state.fullPathHash != DeathStateHash || state.normalizedTime < 1f)
+            return;
+
+        finalCutsceneStarted = true;
+        SceneManager.LoadScene("CutsceneFinal");
     }
 
     private void OnDisable()
