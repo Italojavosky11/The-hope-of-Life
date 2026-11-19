@@ -207,6 +207,8 @@ MonoBehaviour:
   velocidadeCombate: 1.5
   tempoParadoEmCadaPonto: 2
   vidaMaxima: 150
+  somDano: {fileID: 8300000, guid: fb58d956ab6be724594e59520b6e01c1, type: 3}
+  volumeSomDano: 0.45
   vidaLimiteParaPerseguir: 3
   duracaoPerseguicao: 3
   velocidadePerseguicao: 3

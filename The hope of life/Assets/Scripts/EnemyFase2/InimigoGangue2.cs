@@ -27,6 +27,8 @@ public class InimigoGangue2 : MonoBehaviour
 
     [Header("Combate")]
     public float vidaMaxima = 125f;
+    [SerializeField] private AudioClip somDano;
+    [SerializeField, Range(0f, 1f)] private float volumeSomDano = 0.45f;
 
     [Header("Perseguição com pouca vida")]
     public float vidaLimiteParaPerseguir = 3f;
@@ -343,7 +345,11 @@ public class InimigoGangue2 : MonoBehaviour
         if (vidaAtual <= 0f)
             return;
 
-        vidaAtual = Mathf.Max(0f, vidaAtual - Mathf.Max(0f, dano));
+        float danoAplicado = Mathf.Max(0f, dano);
+        if (danoAplicado > 0f && somDano != null)
+            AudioSource.PlayClipAtPoint(somDano, transform.position, volumeSomDano);
+
+        vidaAtual = Mathf.Max(0f, vidaAtual - danoAplicado);
         if (vidaAtual <= 0f)
             Destroy(gameObject);
     }

@@ -28,6 +28,8 @@ public class InimigoGangue3 : MonoBehaviour
 
     [Header("Combate")]
     public float vidaMaxima = 125f;
+    [SerializeField] private AudioClip somDano;
+    [SerializeField, Range(0f, 1f)] private float volumeSomDano = 0.45f;
 
     private static readonly List<InimigoGangue3> membros = new List<InimigoGangue3>();
     private Rigidbody2D rb;
@@ -291,7 +293,11 @@ public class InimigoGangue3 : MonoBehaviour
     public void ReceberDano(float dano)
     {
         if (vidaAtual <= 0f) return;
-        vidaAtual = Mathf.Max(0f, vidaAtual - Mathf.Max(0f, dano));
+        float danoAplicado = Mathf.Max(0f, dano);
+        if (danoAplicado > 0f && somDano != null)
+            AudioSource.PlayClipAtPoint(somDano, transform.position, volumeSomDano);
+
+        vidaAtual = Mathf.Max(0f, vidaAtual - danoAplicado);
         if (vidaAtual <= 0f) Destroy(gameObject);
     }
 }

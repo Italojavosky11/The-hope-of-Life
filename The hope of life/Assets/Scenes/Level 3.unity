@@ -1133,6 +1133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JohnKentBoss
   maxHealth: 200
+  somDano: {fileID: 8300000, guid: 47ec4b27546f3a4488dea4a6407890e6, type: 3}
+  volumeSomDano: 0.45
   movementPoints:
   - {x: -3, y: 0}
   - {x: 0, y: 2.5}

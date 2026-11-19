@@ -209,6 +209,8 @@ MonoBehaviour:
   vazio: {fileID: 21300000, guid: 78ac39a2587d377459f87e96cdcea9b1, type: 3}
   player: {fileID: 5649543415813562746}
   clipMorte: {fileID: 7400000, guid: f9acdff98cd0472c8b359ed56d6d5679, type: 2}
+  somDano: {fileID: 8300000, guid: fb58d956ab6be724594e59520b6e01c1, type: 3}
+  volumeSomDano: 0.45
 --- !u!95 &382531838296579583
 Animator:
   serializedVersion: 7

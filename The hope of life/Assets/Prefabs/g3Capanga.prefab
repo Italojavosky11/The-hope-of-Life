@@ -277,3 +277,5 @@ MonoBehaviour:
   distanciaMovimentoVertical: 1
   tempoParadoEmCadaPonto: 2
   vidaMaxima: 125
+  somDano: {fileID: 8300000, guid: fb58d956ab6be724594e59520b6e01c1, type: 3}
+  volumeSomDano: 0.45

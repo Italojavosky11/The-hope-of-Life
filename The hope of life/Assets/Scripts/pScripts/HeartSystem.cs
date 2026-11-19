@@ -26,6 +26,8 @@ public class HeartSystem : MonoBehaviour
     private static readonly int EstadoMorte = Animator.StringToHash("Base Layer.Morte");
     [SerializeField] private AnimationClip clipMorte;
     [SerializeField] private GameObject painelMorte;
+    [SerializeField] private AudioClip somDano;
+    [SerializeField, Range(0f, 1f)] private float volumeSomDano = 0.45f;
 
     private bool aguardandoReinicio;
 
@@ -58,7 +60,12 @@ public class HeartSystem : MonoBehaviour
         vida -= dano;
 
         if (dano > 0f)
+        {
+            if (somDano != null)
+                AudioSource.PlayClipAtPoint(somDano, transform.position, volumeSomDano);
+
             efeitoDano?.AtivarEfeitoDano();
+        }
 
         if (vida < 0)
             vida = 0;

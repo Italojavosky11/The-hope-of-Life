@@ -21,6 +21,8 @@ public sealed class JohnKentBoss : MonoBehaviour
     [Header("Vida")]
     [Min(1f)] public float maxHealth = 200f;
     public float CurrentHealth { get; private set; }
+    [SerializeField] private AudioClip somDano;
+    [SerializeField, Range(0f, 1f)] private float volumeSomDano = 0.45f;
 
     [Header("Pontos de movimentação (offsets da posição inicial)")]
     public Vector2[] movementPoints = { new Vector2(-3f, 0f), new Vector2(0f, 2.5f), new Vector2(3f, 0f), new Vector2(0f, -2.5f), new Vector2(-2f, -2f) };
@@ -349,7 +351,11 @@ public sealed class JohnKentBoss : MonoBehaviour
     public void ReceiveDamage(float amount)
     {
         if (dead) return;
-        CurrentHealth = Mathf.Max(0f, CurrentHealth - Mathf.Max(0f, amount));
+        float danoAplicado = Mathf.Max(0f, amount);
+        if (danoAplicado > 0f && somDano != null)
+            AudioSource.PlayClipAtPoint(somDano, transform.position, volumeSomDano);
+
+        CurrentHealth = Mathf.Max(0f, CurrentHealth - danoAplicado);
         UpdateDifficulty();
         if (CurrentHealth <= 0f) Die();
     }
