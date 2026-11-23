@@ -7,22 +7,14 @@ public class Arma : MonoBehaviour
 
     private float nextFireTime;
     private Animator animatorJogador;
+    private Player controladorJogador;
     private SpriteRenderer[] spritesArma;
     private bool atacando;
-
-    private static readonly int[] estadosDeDisparo =
-    {
-        Animator.StringToHash("IdleAtirandoColt"),
-        Animator.StringToHash("IdleAtirandoRevolver"),
-        Animator.StringToHash("IdleAtirandoSpringfield"),
-        Animator.StringToHash("IdleAtirandoFrente"),
-        Animator.StringToHash("Idle Costa Atirando"),
-        Animator.StringToHash("AtirandoRevolverParado")
-    };
 
     void Awake()
     {
         animatorJogador = GetComponentInParent<Animator>();
+        controladorJogador = GetComponentInParent<Player>();
         spritesArma = GetComponentsInChildren<SpriteRenderer>(true);
 
         AtualizarVisual(false);
@@ -30,46 +22,25 @@ public class Arma : MonoBehaviour
 
     void Update()
     {
-        bool pressionandoSpace =
-            Input.GetKey(KeyCode.Space) &&
-            animatorJogador != null;
+        if (animatorJogador == null)
+            return;
+
+        bool jogadorPodeAtirar = Time.timeScale > 0f &&
+            (controladorJogador == null ||
+             (controladorJogador.isActiveAndEnabled &&
+              controladorJogador.podeMover));
+        bool pressionandoSpace = jogadorPodeAtirar &&
+            Input.GetKey(KeyCode.Space);
 
         atacando = pressionandoSpace;
         if (animatorJogador.GetBool("Atacando") != atacando)
             animatorJogador.SetBool("Atacando", atacando);
 
-        if (pressionandoSpace && AnimacaoDeDisparoAtiva())
+        // A animação é apenas visual: esperar o Animator entrar em um estado
+        // específico fazia o tiro depender de transições que podem não ocorrer
+        // após o Rebind usado no respawn ou ao retomar o jogo.
+        if (pressionandoSpace)
             Atirar();
-    }
-
-    private bool AnimacaoDeDisparoAtiva()
-    {
-        if (animatorJogador == null || !animatorJogador.isInitialized)
-            return false;
-
-        for (int layer = 0; layer < animatorJogador.layerCount; layer++)
-        {
-            AnimatorStateInfo estadoAtual = animatorJogador.GetCurrentAnimatorStateInfo(layer);
-            if (EhAnimacaoDeDisparo(estadoAtual.shortNameHash))
-                return true;
-
-            if (animatorJogador.IsInTransition(layer) &&
-                EhAnimacaoDeDisparo(animatorJogador.GetNextAnimatorStateInfo(layer).shortNameHash))
-                return true;
-        }
-
-        return false;
-    }
-
-    private static bool EhAnimacaoDeDisparo(int hash)
-    {
-        for (int i = 0; i < estadosDeDisparo.Length; i++)
-        {
-            if (hash == estadosDeDisparo[i])
-                return true;
-        }
-
-        return false;
     }
 
     void Atirar()

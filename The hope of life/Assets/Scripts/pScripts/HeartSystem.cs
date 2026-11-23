@@ -205,6 +205,10 @@ public class HeartSystem : MonoBehaviour
         if (animacaoMorte != null) animacaoMorte.Stop();
         if (animator != null)
         {
+            // Rebind volta todos os parâmetros ao padrão do controller.
+            // A arma equipada continua no inventário, então preserve seu
+            // índice para manter as transições da animação de tiro corretas.
+            int armaAtual = animator.GetInteger("ArmaAtual");
             animator.enabled = true;
             animator.Rebind();
             animator.Update(0f);
@@ -212,6 +216,7 @@ public class HeartSystem : MonoBehaviour
             animator.SetBool("Atacando", false);
             animator.SetFloat("speed", 0f);
             animator.SetInteger("Direcao", 0);
+            animator.SetInteger("ArmaAtual", armaAtual);
         }
         if (corpo != null)
         {
