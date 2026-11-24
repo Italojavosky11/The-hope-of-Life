@@ -17,10 +17,13 @@ public class CheckpointManager : MonoBehaviour
 
     private void Awake()
     {
+        // Cada cena precisa aplicar suas armas iniciais, mesmo que já exista
+        // outra instância do gerenciador no domínio atual.
+        GerenciadorArmas.Desbloquear(armasIniciaisFase);
+
         if (Instance == null)
         {
             Instance = this;
-            GerenciadorArmas.Desbloquear(armasIniciaisFase);
             armasInicioFase = GerenciadorArmas.CapturarDesbloqueadas();
 
             GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -31,6 +34,12 @@ public class CheckpointManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
     }
 
     public void DefinirCheckpoint(Vector3 posicao)
