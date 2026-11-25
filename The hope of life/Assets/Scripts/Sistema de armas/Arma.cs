@@ -10,6 +10,16 @@ public class Arma : MonoBehaviour
     private Player controladorJogador;
     private SpriteRenderer[] spritesArma;
     private bool atacando;
+    private static readonly int IdleSpringfieldAtirando =
+        Animator.StringToHash("Base Layer.IdleAtirandoSpringfield");
+    private static readonly int IdleColtAtirando =
+        Animator.StringToHash("Base Layer.IdleAtirandoColt");
+    private static readonly int IdleRevolverAtirando =
+        Animator.StringToHash("Base Layer.IdleAtirandoRevolver");
+    private static readonly int IdleCostaAtirando =
+        Animator.StringToHash("Base Layer.Idle Costa Atirando");
+    private static readonly int IdleFrenteAtirando =
+        Animator.StringToHash("Base Layer.IdleAtirandoFrente");
 
     void Awake()
     {
@@ -54,6 +64,7 @@ public class Arma : MonoBehaviour
             return;
 
         nextFireTime = Time.time + dataArma.fireRate;
+        ReproduzirAnimacaoDeTiro();
 
         Vector2 direcao = ObterDirecaoTiro();
 
@@ -74,6 +85,39 @@ public class Arma : MonoBehaviour
 
         if (balaScript != null)
             balaScript.Configurar(dataArma);
+    }
+
+    private void ReproduzirAnimacaoDeTiro()
+    {
+        if (animatorJogador == null ||
+            animatorJogador.GetFloat("speed") > 0.01f)
+            return;
+
+        int estado;
+        int direcao = animatorJogador.GetInteger("Direcao");
+        if (direcao == 1)
+        {
+            estado = IdleCostaAtirando;
+        }
+        else if (direcao == 2)
+        {
+            estado = IdleFrenteAtirando;
+        }
+        else if (dataArma.weaponName == "Springfield")
+        {
+            estado = IdleSpringfieldAtirando;
+        }
+        else if (dataArma.weaponName == "Colt")
+        {
+            estado = IdleColtAtirando;
+        }
+        else
+        {
+            estado = IdleRevolverAtirando;
+        }
+
+        if (animatorJogador.HasState(0, estado))
+            animatorJogador.CrossFadeInFixedTime(estado, 0.03f, 0, 0f);
     }
 
     Vector3 ObterPontoSaidaBala(Vector2 direcao)
