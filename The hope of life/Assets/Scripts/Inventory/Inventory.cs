@@ -204,6 +204,8 @@ public class Inventory : MonoBehaviour
 
         if (armaAtual != null && armaAtual.dataArma == dataArma)
         {
+            armaEquipada.SetActive(true);
+            armaAtual.enabled = true;
             AtualizarArmaAtual(indice + 1);
             return;
         }
@@ -241,15 +243,11 @@ public class Inventory : MonoBehaviour
 
     public void AtualizarAposRestaurarDesbloqueios()
     {
-        if (armaEquipada == null)
-            return;
+        EquiparArmaDoPrimeiroSlot();
+    }
 
-        Arma armaAtual = armaEquipada.GetComponent<Arma>();
-        if (armaAtual != null &&
-            !GerenciadorArmas.EstaDesbloqueada(armaAtual.dataArma))
-        {
-            RemoverArmaEquipada();
-            EquiparArmaDoPrimeiroSlot();
-        }
+    public void RestaurarArmaAposRespawn()
+    {
+        EquiparArmaDoPrimeiroSlot();
     }
 }
