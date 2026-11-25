@@ -20,6 +20,18 @@ public class Arma : MonoBehaviour
         Animator.StringToHash("Base Layer.Idle Costa Atirando");
     private static readonly int IdleFrenteAtirando =
         Animator.StringToHash("Base Layer.IdleAtirandoFrente");
+    private static readonly int WalkColt =
+        Animator.StringToHash("Base Layer.Colt.WalkColt");
+    private static readonly int WalkColtFrente =
+        Animator.StringToHash("Base Layer.Colt.WalkColtFrente");
+    private static readonly int WalkColtCosta =
+        Animator.StringToHash("Base Layer.Colt.WalkColtCosta");
+    private static readonly int WalkSpringfield =
+        Animator.StringToHash("Base Layer.Springfield.WalkSpringfield");
+    private static readonly int WalkSpringfieldFrente =
+        Animator.StringToHash("Base Layer.Springfield.WalkSpringfieldFrente");
+    private static readonly int WalkSpringfieldCosta =
+        Animator.StringToHash("Base Layer.Springfield.WalkSpringfieldCosta");
 
     void Awake()
     {
@@ -89,12 +101,36 @@ public class Arma : MonoBehaviour
 
     private void ReproduzirAnimacaoDeTiro()
     {
-        if (animatorJogador == null ||
-            animatorJogador.GetFloat("speed") > 0.01f)
+        if (animatorJogador == null)
             return;
 
-        int estado;
         int direcao = animatorJogador.GetInteger("Direcao");
+        if (animatorJogador.GetFloat("speed") > 0.01f)
+        {
+            int estadoAndando = ObterEstadoAndandoComArma(direcao);
+            if (estadoAndando != 0 &&
+                animatorJogador.HasState(0, estadoAndando))
+            {
+                AnimatorStateInfo atual =
+                    animatorJogador.GetCurrentAnimatorStateInfo(0);
+                bool jaEstaNoEstado = atual.fullPathHash == estadoAndando;
+
+                if (!jaEstaNoEstado && animatorJogador.IsInTransition(0))
+                {
+                    AnimatorStateInfo proximo =
+                        animatorJogador.GetNextAnimatorStateInfo(0);
+                    jaEstaNoEstado = proximo.fullPathHash == estadoAndando;
+                }
+
+                if (!jaEstaNoEstado)
+                    animatorJogador.CrossFadeInFixedTime(
+                        estadoAndando, 0.03f, 0, 0f);
+            }
+
+            return;
+        }
+
+        int estado;
         if (direcao == 1)
         {
             estado = IdleCostaAtirando;
@@ -118,6 +154,32 @@ public class Arma : MonoBehaviour
 
         if (animatorJogador.HasState(0, estado))
             animatorJogador.CrossFadeInFixedTime(estado, 0.03f, 0, 0f);
+    }
+
+    private int ObterEstadoAndandoComArma(int direcao)
+    {
+        if (dataArma == null)
+            return 0;
+
+        if (dataArma.weaponName == "Colt")
+        {
+            if (direcao == 1)
+                return WalkColtCosta;
+            if (direcao == 2)
+                return WalkColtFrente;
+            return WalkColt;
+        }
+
+        if (dataArma.weaponName == "Springfield")
+        {
+            if (direcao == 1)
+                return WalkSpringfieldCosta;
+            if (direcao == 2)
+                return WalkSpringfieldFrente;
+            return WalkSpringfield;
+        }
+
+        return 0;
     }
 
     Vector3 ObterPontoSaidaBala(Vector2 direcao)

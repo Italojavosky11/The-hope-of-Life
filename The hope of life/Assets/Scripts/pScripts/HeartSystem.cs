@@ -214,12 +214,6 @@ public class HeartSystem : MonoBehaviour
             animator.SetInteger("Direcao", 0);
         }
 
-        // Rebind reseta os parâmetros do Animator; sincronize o índice da arma
-        // com o primeiro slot depois dessa reinicialização.
-        Inventory inventory = FindFirstObjectByType<Inventory>();
-        if (inventory != null)
-            inventory.RestaurarArmaAposRespawn();
-
         if (corpo != null)
         {
             corpo.simulated = true;
@@ -231,6 +225,20 @@ public class HeartSystem : MonoBehaviour
             controladorPlayer.RestaurarEstadoAposRespawn();
             controladorPlayer.podeMover = true;
             controladorPlayer.enabled = true;
+        }
+
+        // Rebind reseta os parâmetros do Animator. Recrie a arma só depois
+        // que o jogador estiver restaurado e sincronize o Animator por último.
+        Inventory inventory = FindFirstObjectByType<Inventory>();
+        if (inventory != null)
+            inventory.RestaurarArmaAposRespawn();
+        else if (animator != null)
+            animator.SetInteger("ArmaAtual", 0);
+
+        if (animator != null)
+        {
+            animator.SetBool("Atacando", false);
+            animator.Update(0f);
         }
 
         morreu = false;

@@ -248,6 +248,9 @@ public class Inventory : MonoBehaviour
 
     public void RestaurarArmaAposRespawn()
     {
+        // A arma pode ter ficado com estado interno antigo durante a morte.
+        // Recrie-a depois do Rebind do Animator para restaurar todas as refs.
+        RemoverArmaEquipada();
         EquiparArmaDoPrimeiroSlot();
     }
 }

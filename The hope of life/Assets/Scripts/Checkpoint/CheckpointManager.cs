@@ -68,10 +68,6 @@ public class CheckpointManager : MonoBehaviour
 
         player.transform.position = possuiCheckpoint ? checkpointPosition : inicioFase;
 
-        Inventory inventory = FindFirstObjectByType<Inventory>();
-        if (inventory != null)
-            inventory.AtualizarAposRestaurarDesbloqueios();
-
         HeartSystem heartSystem = player.GetComponent<HeartSystem>();
         SedeSystem sedeSystem = FindFirstObjectByType<SedeSystem>();
 
